@@ -19,39 +19,44 @@ export class AdmindashComponent implements OnInit {
     HighestQualification: "btech",
     CurrentCompanyName: "ict",
     Skillset: "angular",
-    approved:true
-  }, {
-    Name: "gokul",
-    Email: "g@gmail.com",
-    Phone: "123545",
-    Address: "hhhhh",
-    HighestQualification: "btech",
-    CurrentCompanyName: "ict",
-    Skillset: "angular",
-    approved:false
-  }, {
-    Name: "gokul",
-    Email: "g@gmail.com",
-    Phone: "123546",
-    Address: "hhhhh",
-    HighestQualification: "btech",
-    CurrentCompanyName: "ict",
-    Skillset: "angular",
-    approved:true
-  }, {
+    approved: true
+  },{
     Name: "meera",
-    Email: "g@gmail.com",
+    Email: "mera@gmail.com",
     Phone: "123545",
     Address: "hhhhh",
     HighestQualification: "btech",
     CurrentCompanyName: "ict",
     Skillset: "angular",
-    approved:true
+    approved: false
+  },{
+    Name: "meera",
+    Email: "mera@gmail.com",
+    Phone: "123545",
+    Address: "hhhhh",
+    HighestQualification: "btech",
+    CurrentCompanyName: "ict",
+    Skillset: "angular",
+    approved: false
+  },{
+    Name: "meera",
+    Email: "mera@gmail.com",
+    Phone: "123545",
+    Address: "hhhhh",
+    HighestQualification: "btech",
+    CurrentCompanyName: "ict",
+    Skillset: "angular",
+    approved: true
   }];
 
+ 
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
 
-}
+    }
+
+  }
+
