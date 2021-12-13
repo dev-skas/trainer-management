@@ -22,7 +22,7 @@ import { AllocationComponent } from './allocation/allocation.component';
     MainHomeComponent,
     SignUpComponent,
     LoginComponent,
-    EditDetailsFormComponent
+    EditDetailsFormComponent,
 
     TrainerprofileComponent,
     TrainerDashboardComponent,

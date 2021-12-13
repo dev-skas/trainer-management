@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class TrainerprofileComponent implements OnInit {
 title:string= "Profile";
 // profile: profileModel[]=[];
- profile:any=[{Name:"meera", Email:"mera@gmail.com",Phone:"123545",Address:"hhhhh",HighestQualification:"btech",CurrentCompanyName:"ict",Skillset:"angular"},{Name:"gokul",Email:"g@gmail.com",Phone:"123545",Address:"hhhhh",HighestQualification:"btech",CurrentCompanyName:"ict",Skillset:"angular"},{Name:"gokul",Email:"g@gmail.com",Phone:"123545",Address:"hhhhh",HighestQualification:"btech",CurrentCompanyName:"ict",Skillset:"angular"},{Name:"gokul",Email:"g@gmail.com",Phone:"123545",Address:"hhhhh",HighestQualification:"btech",CurrentCompanyName:"ict",Skillset:"angular"}];
+ profile:any=[{Name:"meera", Email:"mera@gmail.com",Phone:"123545",Address:"hhhhh",HighestQualification:"btech",CurrentCompanyName:"ict",Skillset:"angular"}];
 
 
   constructor(private router:Router) { }
