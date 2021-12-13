@@ -5,14 +5,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MainHomeComponent } from './main-home/main-home.component';
+import { MainHomeComponent } from './main-home-nav/main-home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { EditDetailsFormComponent } from './edit-details-form/edit-details-form.component';
 
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
-import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
+import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.component';
 import { AllocationComponent } from './allocation/allocation.component';
+import { HomeComponent } from './home/home.component';
+import { AdminnavComponent } from './adminnav/adminnav.component';
+import { AdmindashComponent } from './admindash/admindash.component';
 
 
 @NgModule({
@@ -22,11 +25,14 @@ import { AllocationComponent } from './allocation/allocation.component';
     MainHomeComponent,
     SignUpComponent,
     LoginComponent,
-    EditDetailsFormComponent
+    EditDetailsFormComponent,
 
     TrainerprofileComponent,
     TrainerDashboardComponent,
-    AllocationComponent
+    AllocationComponent,
+    HomeComponent,
+    AdminnavComponent,
+    AdmindashComponent
 
   ],
   imports: [

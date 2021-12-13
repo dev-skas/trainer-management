@@ -1,0 +1,28 @@
+<section  class="p-lg-5 p-3 ">
+    <h2 class="text-center text-white">Trending Books</h2>
+    <p class="lead text-center text-white mb-5">A book is a gift you can open again and again</p>
+    
+    <div class="row g-4">
+       
+        
+        <div *ngFor="let item of list"  class="col-md-6 col-lg-3">
+            <ng-template [ngIf]="item.approved">
+            <div class="card bg-light">
+                <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
+                    name
+                  </span>
+                    <img src="/images/<%=books[i].image%>"  class="img " alt="">
+                    <div class="card-body text-center">
+                    <h5 class="card-title "> ddd</h5>
+                    <h6>By <b>ddd</b></h6>
+                    <a href="/books/<%=books[i]._id%>" class="btn btn-light ">
+                        <i class="bi bi-chevron-right"> </i>Read More
+                    </a>
+                </div>
+            </div>
+        </ng-template>
+        </div>
+        </div>
+
+    
+</section>
