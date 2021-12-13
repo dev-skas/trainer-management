@@ -1,62 +1,19 @@
 <app-trainer-dashboard></app-trainer-dashboard>
 
-<div class='card'>
-    <div class='card-header'>
-        {{title}}
 
-    </div>
-    <div class='card-body'>
-        <div class='table-responsive'>
-            <table class='table'>
-                <thead style="border-width: 2px; color: rgb(24, 22, 22);background-color: rgb(93, 196, 165);font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-                    <tr>
-        
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Highest Qualification</th>
-                        <th>Skill Set</th>
-                        <th>Current Company Name</th>
-                        <th>Current Designation</th>
-                        <th>ICTAK Courses Handling</th>
-                        <th>Photo </th>
-                
-                        <th>ID</th>
-                        
-                      
-                       
-                    </tr>
-                </thead>
-                <tbody style="border: blue;border-width: 2px; color: white;background-color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-                   <tr *ngFor='let i of profile'>
-                       
-                    <td >{{ i.Name }}</td>
-                    <td>{{ i.Email }}</td>
-                    <td>{{ i.Phone }}</td>
-                    <td>{{ i.Address }}</td>
-                    <td>{{ i.HighestQualification }}</td>
-                    <td>{{ i.Skillset }}</td>
-                    <td>{{ i.CurrentCompanyName }}</td>
-                    <td>{{ i.CurrentDesignation  }}</td>
-                    <td>{{ i.ICTAKCoursesHandling }}</td>
-                    <td>{{ i.Photo }}</td>
-                    <td>{{ i.ID }}</td>
-                
-                    <td>
-                        
-                        <button    class="btn btn-warning">Edit</button>
-                        <button  class="btn btn-danger" >Delete</button>
 
-                    </td>
-                  
-                   </tr>
-                </tbody>
-            </table>
-        </div>
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    </div>
-
-    
+<div class="card" *ngFor='let i of profile'>
+  <img src="/assets/Meera-2.png"  style="width:100%">
+  <h1>{{i.Name}}</h1>
+  <p class="title">email: {{i.Email}}</p>
+  <p>Address: {{i.Address}}</p>
+  <p>Phone: {{i.Phone}}</p>
+  
+  <p>Qualification: {{i.HighestQualification}}</p>
+  <p>{{i.CurrentCompanyName}}</p>
+  <p>Skillset:{{i.Skillset}}</p>
+ 
 </div>
-
