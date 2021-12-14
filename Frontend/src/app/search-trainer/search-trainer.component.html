@@ -1,0 +1,35 @@
+<div>
+<!-- <label for="trainer">Select Search Option</label>
+<select name="trainer" id="trainer" (change)="getoption($event)">
+    <option value="" disabled>......Select......</option>
+    <option value="name" >name</option>
+    <option value="course" >course</option>
+
+</select>
+<select name="" id="">
+    <option value="" *ngFor="let trainer of trainers ">{{trainer.select}}</option>
+
+</select> -->
+
+
+</div>
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Type to search" [(ngModel)]="data">
+  </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Course</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of trainers | filter:data">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.course}}</td>
+      </tr>
+    </tbody>
+  </table>
