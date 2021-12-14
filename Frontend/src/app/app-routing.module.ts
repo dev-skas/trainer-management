@@ -1,16 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
-import { SearchTrainerComponent } from './search-trainer/search-trainer.component';
-import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
-import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
-
-const routes: Routes = [{path:'trainerprofile',component:TrainerprofileComponent},
-{path:'trainer-dashboard', component:TrainerDashboardComponent},
-{
-  path:'searchtrainer',component:SearchTrainerComponent
-}];
-=======
 import { AdmindashComponent } from './admindash/admindash.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { EditDetailsFormComponent } from './edit-details-form/edit-details-form.component';
@@ -29,7 +18,6 @@ const routes: Routes = [{ path: "", component: HomeComponent },
   { path: "admin", component: AdmindashComponent },
   {path:"admin/allocate",component:AllocationComponent}];
 
->>>>>>> 79471e7e1310abf2a4f095575630b356676909d4
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

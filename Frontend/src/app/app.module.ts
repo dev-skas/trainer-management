@@ -11,19 +11,16 @@ import { LoginComponent } from './login/login.component';
 import { EditDetailsFormComponent } from './edit-details-form/edit-details-form.component';
 
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
-<<<<<<< HEAD
-import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
+// import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
 import { SearchTrainerComponent } from './search-trainer/search-trainer.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule } from '@angular/forms';
-=======
+
 import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { HomeComponent } from './home/home.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 
->>>>>>> 79471e7e1310abf2a4f095575630b356676909d4
 
 @NgModule({
   declarations: [
@@ -36,23 +33,17 @@ import { AdmindashComponent } from './admindash/admindash.component';
 
     TrainerprofileComponent,
     TrainerDashboardComponent,
-<<<<<<< HEAD
-    SearchTrainerComponent
-=======
+    SearchTrainerComponent,
     AllocationComponent,
     HomeComponent,
     AdminnavComponent,
     AdmindashComponent
 
->>>>>>> 79471e7e1310abf2a4f095575630b356676909d4
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-<<<<<<< HEAD
     Ng2SearchPipeModule,
-=======
->>>>>>> 79471e7e1310abf2a4f095575630b356676909d4
     FormsModule
   ],
   providers: [],
