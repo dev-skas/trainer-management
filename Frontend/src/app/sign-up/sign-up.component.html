@@ -1,0 +1,73 @@
+<!-- In this Component, I have only made the form work in getting the input from user and display it in console log
+ I have not done form validation, form styling  but I wrote <br> to see form clearly.
+ I used [(ngModel)] for img file input but when multer gets implemented, it might have to be changed
+   --Arathi
+-->
+
+<app-main-home></app-main-home>
+
+
+<h1>Sign UP Form</h1>
+<br>
+<form (ngSubmit)="addUser()" enctype="multipart/form-data">
+   <div>
+    <label for="name">Name</label>
+    <input type="text" class="form-control" placeholder="Enter Name " id="name" name="name" [(ngModel)] = "userItem.name">
+      <br>
+<div class="row">
+  <div class="form-group col-md-8 col-sm-12">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" placeholder="Enter Email " id="email" name="email" [(ngModel)] ="userItem.email">
+      <br>
+  </div>
+  <div class="form-group col-md-4 col-sm-12">
+
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" placeholder="Enter Phone " id="phone" name="phone" [(ngModel)]="userItem.phone">
+    <br>
+  </div>
+  </div>
+    <label for="address">Address</label>
+    <input type="text" class="form-control" placeholder="Enter Address " id="address" name="address" [(ngModel)] ="userItem.address">
+    <br>
+
+    <label for="h_qualification">Highest Qualification</label>
+    <input type="text" class="form-control" placeholder="Enter Highest Qualification" id="h_qualification" name="h_qualification" [(ngModel)] ="userItem.h_qualification">
+    <br>
+
+    <label for="skillSet">Skill Set</label>
+    <input type="text" class="form-control" placeholder="Enter Skill Set" id="skillSet" name="skillSet" [(ngModel)]="userItem.skillSet">
+    <br>
+
+    <label for="company_name">Current Company Name</label>
+    <input type="text" class="form-control" placeholder="Enter Current Company Name" id="company_name" name="company_name" [(ngModel)] = "userItem.company_name">
+    <br>
+
+    <label for="designation">Current Designation</label>
+    <input type="text" class="form-control" placeholder="Enter Current Designation" id="designation" name="designation" [(ngModel)] ="userItem.designation">
+    <br>
+
+    <label for="courses">ICTAK Courses Handling</label>
+    <!-- The below courseChange($event) helps us to get the value that is selected from the dropdown menu -->
+    <select class="form-control" name="courses" id="courses" [(ngModel)]="userItem.courses" (change)="courseChange($event)">
+      <option value="" selected>Choose Course</option>
+      <option value="Fullstack Development">Fullstack Development</option>
+      <option value="Data Science">Data Science</option>
+      <option value="Cyber Security">Cyber Security</option>
+      <option value="Artificial Intelligence">Artificial Intelligence</option>
+
+    </select>
+    <br>
+    <label for="img">Add Image </label>
+    <input type="file" id="img" class="form-control" name="img" accept="image/,.png,.jpg,.jpeg" [(ngModel)]="userItem.img" >
+      <br>
+    <label for="password">Enter Password</label>
+    <input type="password" class="form-control" name="password" id="password" [(ngModel)]="userItem.password">
+    <br>
+    <label for="re_password">Re-Type Password</label>
+    <input type="password" class="form-control" name="re_password" id="re_password" [(ngModel)]="userItem.re_password">
+    <br>
+    
+    <button type="submit" class="btn btn-success">Sign Up</button>
+   </div>
+</form>

@@ -1,0 +1,56 @@
+<app-trainer-dashboard></app-trainer-dashboard>
+
+<h2>Edit Personal Details Form</h2>
+<form>
+    <label for="name">Name</label>
+    <input type="text" class="form-control" placeholder="Enter Name " id="name" name="name" [(ngModel)] = "userItem.name">
+      <br>
+      <div class="row">
+<div class="col-md-8 col-sm-12">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" placeholder="Enter Email " id="email" name="email" [(ngModel)] ="userItem.email">
+      <br>
+</div>
+<div class="col-md-4 col-sm-12">
+
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" placeholder="Enter Phone " id="phone" name="phone" [(ngModel)]="userItem.phone">
+    <br>
+</div>
+</div>
+    <label for="address">Address</label>
+    <input type="text" class="form-control" placeholder="Enter Address " id="address" name="address" [(ngModel)] ="userItem.address">
+    <br>
+
+    <label for="h_qualification">Highest Qualification</label>
+    <input type="text" class="form-control"  placeholder="Enter Highest Qualification" id="h_qualification" name="h_qualification" [(ngModel)] ="userItem.h_qualification">
+    <br>
+
+    <label for="skillSet">Skill Set</label>
+    <input type="text" class="form-control" placeholder="Enter Skill Set" id="skillSet" name="skillSet" [(ngModel)]="userItem.skillSet">
+    <br>
+
+    <label for="company_name">Current Company Name</label>
+    <input type="text" class="form-control" placeholder="Enter Current Company Name" id="company_name" name="company_name" [(ngModel)] = "userItem.company_name">
+    <br>
+
+    <label for="designation">Current Designation</label>
+    <input type="text" class="form-control" placeholder="Enter Current Designation" id="designation" name="designation" [(ngModel)] ="userItem.designation">
+    <br>
+    <label for="courses">ICTAK Courses Handling</label>
+    <!-- The below courseChange($event) helps us to get the value that is selected from the dropdown menu -->
+    <select name="courses" class="form-control" id="courses"(change)="courseChange($event)">
+      <option disabled value="Choose Course" selected>Choose Course</option>
+      <option value="Fullstack Development">Fullstack Development</option>
+      <option value="Data Science">Data Science</option>
+      <option value="Cyber Security">Cyber Security</option>
+      <option value="Artificial Intelligence">Artificial Intelligence</option>
+
+    </select>
+    <br>
+    <label for="img">Add Image </label>
+    <input class="form-control" type="file" id="img" name="img" accept="image/,.png,.jpg,.jpeg" [(ngModel)]="userItem.img" >
+      <br>
+    
+    <button type="submit" class="btn btn-success" >Edit Personal Details</button>
+</form>
