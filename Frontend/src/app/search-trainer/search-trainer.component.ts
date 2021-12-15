@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AllocationService } from '../allocation.service';
+import { TrainersModel } from '../Model/trainer.Model';
 @Component({
   selector: 'app-search-trainer',
   templateUrl: './search-trainer.component.html',
@@ -7,51 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchTrainerComponent implements OnInit {
 
-  constructor() { }
-  trainers:any=[
-    {"id":1,"name":"Anu","course":"FSd"},
-    {"id":2,"name":"Manu","course":".net"},
-    {"id":3,"name":"Vishnu","course":"php"}
-
-
-  ]
-opts=[];
-select:any
+  constructor(private _allocate:AllocationService,private _router:Router) {this.trainers=[]; }
+  trainers:TrainersModel[];
 
 data:any;
 
-  // Users = [{
-  //     "id": 5440,
-  //     "name": "Wanda Lynch",
-  //     "email": "wanda.lynch@example.com"
-  //   },
-  //   {
-  //     "id": 6228,
-  //     "name": "Katrina Graves",
-  //     "email": "katrina.graves@example.com"
-  //   },
-  //   {
-  //     "id": 1654,
-  //     "name": "Louis Daniels",
-  //     "email": "louis.daniels@example.com"
-  //   },
-  //   {
-  //     "id": 1631,
-  //     "name": "Gavin Sullivan",
-  //     "email": "gavin.sullivan@example.com"
-  //   }]
   ngOnInit(): void {
+    this._allocate.gettrainers().subscribe((data)=>{
+      
+      this.trainers=JSON.parse(JSON.stringify(data));
+      console.log(this.trainers);
+    })
   }
-  getoption(option:any){
-    // console.log(option.target.value)
-this.select=option.target.value
-console.log(this.select)
-
-
-
-  // this.opts= this.trainers.select;
-
-  // console.log(this.opts)
-
+  allocate(item:any){
+    // localStorage.setItem("trainerid",item._id.toString());
+    console.log("ys")
+    this._router.navigate(['admin/allocate'])
+    
   }
 }

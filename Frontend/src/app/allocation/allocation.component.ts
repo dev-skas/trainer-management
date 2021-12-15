@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AllocationService } from '../allocation.service';
 
 @Component({
   selector: 'app-allocation',
@@ -6,34 +8,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./allocation.component.css']
 })
 export class AllocationComponent implements OnInit {
-  training = {
+  trainerdtls = {
     id :'',
     name:'',
-    cname:'',
-    cid:'',
-    bid:'',
-    time:'',
-    sdate:'',
-    edate:'',
-    meetlink:''
+    courses:'',
+    courseid:'',
+    batchid:'',
+    scheduletime:'',
+    startdate:'',
+    enddate:'',
+    venue:'',
+    emptype:''
   
   
   }
-  constructor() { }
+  constructor(private _allocate:AllocationService,private _router:Router) { }
 
   ngOnInit(): void {
+    let trainerId=localStorage.getItem("trainerid");
+    console.log(trainerId)
+    this._allocate.gettrainerdtls(trainerId).subscribe((data)=>{
+      this.trainerdtls=JSON.parse(JSON.stringify(data));
+      console.log(this.trainerdtls.name)
+    })
   }
-  cidSelect(event:any){
-    this.training.cid = event.target.value;
+//   cidSelect(event:any){
+//     this.training.cid = event.target.value;
 
-  }
-  bidSelect(event:any){
-    this.training.bid = event.target.value;
+//   }
+//   bidSelect(event:any){
+//     this.training.bid = event.target.value;
 
-  }
+//   }
   allocate(){
   
-   console.log("Allocation details: "+JSON.stringify(this.training));
+   console.log("Allocation details: "+this.trainerdtls);
 
  }
 
