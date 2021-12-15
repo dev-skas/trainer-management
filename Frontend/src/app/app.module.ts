@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { HttpClientModule} from '@angular/common/http';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +24,11 @@ import { AllocationComponent } from './allocation/allocation.component';
 import { HomeComponent } from './home/home.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
 import { AdmindashComponent } from './admindash/admindash.component';
+
+import { AuthService } from './auth.service';
+
 import {HttpClientModule} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -46,13 +53,20 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
 
+    FormsModule,
+    HttpClientModule
+  ],
+  providers: [
+    AuthService
+
+
     Ng2SearchPipeModule,
 
 
     FormsModule,
     HttpClientModule
+
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

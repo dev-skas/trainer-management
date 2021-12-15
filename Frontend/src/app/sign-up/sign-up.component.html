@@ -59,7 +59,7 @@
     </select>
     <br>
     <label for="img">Add Image </label>
-    <input type="file" id="img" class="form-control" name="img" accept="image/,.png,.jpg,.jpeg" [(ngModel)]="userItem.img" >
+    <input type="file" id="img" class="form-control" name="img" accept="image/,.png,.jpg,.jpeg" [(ngModel)]="userItem.img" (change)="onFileSelect($event)">
       <br>
     <label for="password">Enter Password</label>
     <input type="password" class="form-control" name="password" id="password" [(ngModel)]="userItem.password">
