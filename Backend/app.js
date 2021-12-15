@@ -14,7 +14,7 @@ app.get('/trainers',function(req,res){      //getting trainers details
     .then(function(trainers){
       console.log("success")
         res.send(trainers);
-\
+
     });
 });
 app.put('/approve',(req,res)=>{   //aprrove trainers
