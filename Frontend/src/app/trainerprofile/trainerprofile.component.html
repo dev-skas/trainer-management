@@ -6,14 +6,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="card" *ngFor='let i of profile'>
-  <img src="/assets/Meera-2.png"  style="width:100%">
-  <h1>{{i.Name}}</h1>
-  <p class="title">email: {{i.Email}}</p>
-  <p>Address: {{i.Address}}</p>
-  <p>Phone: {{i.Phone}}</p>
+  <img  [src]='i.img'  style="width:100%">
+  <h1>{{i.name}}</h1>
+  <p class="title">email: {{i.email}}</p>
+  <p>Address: {{i.address}}</p>
+  <p>Phone: {{i.phone}}</p>
   
-  <p>Qualification: {{i.HighestQualification}}</p>
-  <p>{{i.CurrentCompanyName}}</p>
-  <p>Skillset:{{i.Skillset}}</p>
+  <p>Qualification: {{i.h_qualification}}</p>
+  <p>{{i.company_name}}</p>
+  <p>Skillset:{{i.skillSet}}</p>
  
 </div>

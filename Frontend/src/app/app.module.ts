@@ -21,6 +21,7 @@ import { AllocationComponent } from './allocation/allocation.component';
 import { HomeComponent } from './home/home.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
 import { AdmindashComponent } from './admindash/admindash.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -44,7 +45,10 @@ import { AdmindashComponent } from './admindash/admindash.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     Ng2SearchPipeModule,
+
+
     FormsModule,
     HttpClientModule
   ],
