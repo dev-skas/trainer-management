@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { AllocationService } from '../allocation.service';
+import { TrainersModel } from '../Model/trainer.Model';
 
 @Component({
   selector: 'app-admindash',
@@ -11,50 +14,22 @@ import {
 export class AdmindashComponent implements OnInit {
 
 
-  list: any = [{
-    Name: "meera",
-    Email: "mera@gmail.com",
-    Phone: "123545",
-    Address: "hhhhh",
-    HighestQualification: "btech",
-    CurrentCompanyName: "ict",
-    Skillset: "angular",
-    approved: true
-  },{
-    Name: "meera",
-    Email: "mera@gmail.com",
-    Phone: "123545",
-    Address: "hhhhh",
-    HighestQualification: "btech",
-    CurrentCompanyName: "ict",
-    Skillset: "angular",
-    approved: false
-  },{
-    Name: "meera",
-    Email: "mera@gmail.com",
-    Phone: "123545",
-    Address: "hhhhh",
-    HighestQualification: "btech",
-    CurrentCompanyName: "ict",
-    Skillset: "angular",
-    approved: false
-  },{
-    Name: "meera",
-    Email: "mera@gmail.com",
-    Phone: "123545",
-    Address: "hhhhh",
-    HighestQualification: "btech",
-    CurrentCompanyName: "ict",
-    Skillset: "angular",
-    approved: true
-  }];
-
- 
-
-  constructor() { }
+  trainers:TrainersModel[];
+  constructor(private _allocate:AllocationService,private _router:Router) {  this.trainers=[];
+  }
 
   ngOnInit(): void {
     
+    this._allocate.gettrainers().subscribe((data)=>{
+      
+      this.trainers=JSON.parse(JSON.stringify(data));
+      console.log(this.trainers);
+    })
+    }
+    approve(trainer:any){
+      localStorage.setItem("trainerid",trainer._id.toString());
+      this._allocate.approvetrainer(trainer);   
+
 
     }
 

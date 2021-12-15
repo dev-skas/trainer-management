@@ -10,46 +10,19 @@ mongoose.connect(MongoURI,{
 .catch(err=>{console.log("Error from MongoDB: "+err);})   // Error Handling for MongoDB
 
 // Schema creation:
-
-const TrainerSchema = new Schema({
+const AllocationSchema = new Schema({
+    Unique_ID:String,
     name:String,
-    email:String,
-    phone:String,
-    address:String,
-    h_qualification:String,  //higher qualification
-    skillSet:String,
-    company_name:String,
-    designation:String,
     courses:String,
-    img:String,
-    password:String,
-    re_password:String,
-    isApproved:Boolean,
-    isAllocated:Boolean,
-// signUp&Login
-    Unique_ID:String,
-    courseid:String,
-    emptype:String,  //employment type
-
-  
-    Unique_ID:String,
     courseid:String,
     emptype:String,
-
     batchid:String,
     scheduletime:String,
     startdate:String,
     enddate:String,
-
-    venue:String
-
     venue:String,
-
-  
-    employmentType:String,
-    Unique_ID:String
-
+    isAllocated:Boolean,
 
 });
-const trainerData = mongoose.model('trainerData',TrainerSchema);
-module.exports = trainerData;
+const allocationData = mongoose.model('allocationData',AllocationSchema);
+module.exports = allocationData;

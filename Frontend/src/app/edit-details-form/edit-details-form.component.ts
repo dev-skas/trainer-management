@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { TrainerService } from '../trainer.service';
 @Component({
   selector: 'app-edit-details-form',
   templateUrl: './edit-details-form.component.html',
@@ -7,22 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDetailsFormComponent implements OnInit {
   userItem = {
-    name:'nnn',
-    email:'nn',
-    phone:'nn',
-    address:'nn',
-    h_qualification:'nn',
-    skillSet:'nn',
-    company_name:'nn',
-    designation:'nn',
+    name:'',
+    email:'',
+    phone:'',
+    address:'',
+    h_qualification:'',
+    skillSet:'',
+    company_name:'',
+    designation:'',
     courses:'',
     img:'',
     
   }
-  constructor() { }
+  constructor(private router:Router, private trainerservice:TrainerService) { }
 
   ngOnInit(): void {
+  
+
+ 
+// edit trainer profile...................
+
   }
+
+  edittrainer()
+  {    
+    this.trainerservice.edittrainer(this.userItem);   
+    alert("Success");
+    this.router.navigate(['profile']);
+  }
+  
+// ...................
+
   courseChange(event:any){
     // console.log(event.target.value);
     this.userItem.courses = event.target.value;
@@ -32,5 +48,7 @@ export class EditDetailsFormComponent implements OnInit {
     console.log("The edit details: " +JSON.stringify(this.userItem));
     
   }
+
+
 
 }
