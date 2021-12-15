@@ -23,8 +23,11 @@ const TrainerSchema = new Schema({
     img:String,
     password:String,
     re_password:String,
-    isApproved:false,
-    isAllocated:false
+    isApproved:Boolean,
+    isAllocated:Boolean,
+    employmentType:String,
+    Unique_ID:String
+
 });
 const trainerData = mongoose.model('trainerData',TrainerSchema);
 module.exports = trainerData;
