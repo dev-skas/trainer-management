@@ -23,8 +23,16 @@ const TrainerSchema = new Schema({
     img:String,
     password:String,
     re_password:String,
-    isApproved:false,
-    isAllocated:false
+    isApproved:Boolean,
+    isAllocated:Boolean,
+    Unique_ID:String,
+    courseid:String,
+    emptype:String,  //employment type
+    batchid:String,
+    scheduletime:String,
+    startdate:String,
+    enddate:String,
+    venue:String
 });
 const trainerData = mongoose.model('trainerData',TrainerSchema);
 module.exports = trainerData;

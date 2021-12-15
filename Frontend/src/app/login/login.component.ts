@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService:AuthService,
+    private router:Router
+  ) { }
   loginData ={
     email:'',
     password:''
@@ -16,8 +21,8 @@ export class LoginComponent implements OnInit {
   }
 
   Login(){
-     // the object is converted to string and the 3rd parameter ensures that output will pretty print with spaces
-      console.log("Login Data entered: " +JSON.stringify(this.loginData,null," "));
-    
+    this.authService.userLogin(this.loginData)
+    alert("Login Success")
+    this.router.navigate([''])    
   }
 }
