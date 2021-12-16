@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule} from '@angular/common/http';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -28,7 +27,6 @@ import { AdmindashComponent } from './admindash/admindash.component';
 
 import { AuthService } from './auth.service';
 
-import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -53,17 +51,12 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    Ng2SearchPipeModule,
     FormsModule,
     HttpClientModule
   ],
   providers: [
-    AuthService
-
-
-    Ng2SearchPipeModule,
-
-
+    AuthService,
     FormsModule,
     HttpClientModule
 

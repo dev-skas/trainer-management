@@ -23,6 +23,6 @@ export class LoginComponent implements OnInit {
   Login(){
     this.authService.userLogin(this.loginData)
     alert("Login Success")
-    this.router.navigate([''])    
+    this.router.navigate(['profile'])    
   }
 }

@@ -18,7 +18,7 @@ const routes: Routes = [{ path: "", component: HomeComponent },
   { path: "editprofile", component: EditDetailsFormComponent },
   { path: "admin", component: AdmindashComponent },
   {path:"admin/allocate",component:AllocationComponent},
-  {path:"admin/allocate/searchtrainer",component:SearchTrainerComponent}];
+  {path:"admin/searchtrainer",component:SearchTrainerComponent}];
 
 
 @NgModule({

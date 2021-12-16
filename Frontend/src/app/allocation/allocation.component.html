@@ -1,12 +1,12 @@
 <app-adminnav></app-adminnav>
 
 <h1>ALLOCATE TRAINER</h1>
-  <form (ngSubmit)="allocate()">
+  <form (ngSubmit)="allocate(trainerdtls)">
     <div class="row">
       
       <div class="col-md-4 col-sm-12">
         <label for="id">ID</label>
-        <input type="text" class="form-control" id="id" name="id" placeholder="ID" [(ngModel)] = "trainerdtls.id" readonly>
+        <input type="text" class="form-control" id="id" name="id" placeholder="ID" [(ngModel)] = "trainerdtls.Unique_ID" readonly>
       </div>
       <div class="col-md-8 col-sm-12" >
         <label for="name">Trainer's Name</label>

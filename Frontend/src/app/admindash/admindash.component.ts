@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllocationService } from '../allocation.service';
-import { TrainersModel } from '../Model/trainer.Model';
+import { TrainersModel } from '../Models/trainers.model';
 
 @Component({
   selector: 'app-admindash',
@@ -27,8 +27,11 @@ export class AdmindashComponent implements OnInit {
     })
     }
     approve(trainer:any){
-      localStorage.setItem("trainerid",trainer._id.toString());
-      this._allocate.approvetrainer(trainer);   
+      // localStorage.setItem("trainerid",trainer._id.toString());
+      this._allocate.approvetrainer(trainer)
+      .subscribe((data)=>{
+        console.log("approved")
+      })   
 
 
     }

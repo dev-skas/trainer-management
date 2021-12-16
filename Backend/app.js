@@ -12,7 +12,15 @@ app.use(express.urlencoded({ extended: true }));
 // app.use('/public',express.static('./public'))
 app.use(cors());
 app.get('/trainers',function(req,res){      //getting trainers details
-    trainerData.find()
+    trainerData.find({ isApproved:"false"})
+    .then(function(trainers){
+      console.log("success")
+        res.send(trainers);
+
+    });
+});
+app.get('/trainerdtl',function(req,res){      //getting trainers details
+    trainerData.find({ isAllocated: "false" ,isApproved:"true"  })
     .then(function(trainers){
       console.log("success")
         res.send(trainers);
@@ -40,6 +48,33 @@ app.put('/approve',(req,res)=>{   //aprrove trainers
       
       })
 
+      app.put('/allocate',function(req,res){     //allocate trainers
+    console.log(req.file);
+    id=req.body._id;
+        courseid=req.body.courseid,
+        batchid=req.body.batchid,
+        scheduletime=req.body.scheduletime,
+        startdate=req.body.startdate,
+        enddate=req.body.enddate,
+        venue=req.body.venue,
+        emptype=req.body.emptype,
+
+    trainerData.findByIdAndUpdate({"_id":id},{$set:{
+        "courseid":courseid,
+       "batchid":batchid,
+        "scheduletime":scheduletime,
+        "startdate":startdate,
+       "enddate":enddate,
+        "venue":venue,
+        "emptype":emptype,
+        "isAllocated":"true" //employment type
+
+        }})
+        .then(function(){
+          res.send()
+        })
+        })
+
 // trainer profile
 
 app.get('/profile/:id',function(req,res){
@@ -55,17 +90,19 @@ app.get('/profile/:id',function(req,res){
           });
 });
 
+//signup
+const signUpRouter = require('./src/routes/signUpRoute');
+app.post('/registerTrainer',signUpRouter);
+const loginRouter = require('./src/routes/loginRoute')
+app.post('/login',loginRouter)
+
 // to edit trainer profile
 
 app.post('/editprofile',function(req,res){
     res.header("Access-Control-Allow-Origin","*");
     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log(req.body);
-//signup
-const signUpRouter = require('./src/routes/signUpRoute');
-app.post('/registerTrainer',signUpRouter);
-const loginRouter = require('./src/routes/loginRoute')
-app.post('/login',loginRouter)
+
 
     var trainerData ={
         _id : req.body.trainerData._id,

@@ -12,15 +12,23 @@ export class AllocationService {
     return this.http.get('http://localhost:3000/trainers')
 
   }
+  gettrainerdtl()
+  {
+    return this.http.get('http://localhost:3000/trainerdtl')
+
+  }
   approvetrainer(trainer:any){
     return this.http.put('http://localhost:3000/approve',trainer)
-    .subscribe((data)=>{
-      console.log("approved")
-    })
+    
 
   }
   gettrainerdtls(trainerId:any){
     return this.http.get('http://localhost:3000/'+trainerId)
 
   }
+  allocate(trainerdtls:any){
+    return this.http.put<any>('http://localhost:3000/allocate',trainerdtls)
+    .subscribe((data)=>{
+      console.log("update load")
+    })  }
 }

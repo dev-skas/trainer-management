@@ -9,7 +9,7 @@ import { AllocationService } from '../allocation.service';
 })
 export class AllocationComponent implements OnInit {
   trainerdtls = {
-    id :'',
+    Unique_ID :'',
     name:'',
     courses:'',
     courseid:'',
@@ -40,7 +40,13 @@ export class AllocationComponent implements OnInit {
 //     this.training.bid = event.target.value;
 
 //   }
-  allocate(){
+  allocate(trainerdtls:any){
+   
+    this._allocate.allocate(this.trainerdtls);
+   
+    console.log("called");
+    alert("success");
+    this._router.navigate(['admin']);
   
    console.log("Allocation details: "+this.trainerdtls);
 
