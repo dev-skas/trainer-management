@@ -1,5 +1,6 @@
 export class TrainersModel{
     constructor(
+        // SIGN UP:
         public name:string,
         public email:string,
         public phone:string,
@@ -13,6 +14,9 @@ export class TrainersModel{
         public password:string,
         public re_password:string,
         public Unique_ID:string,
+        public isApproved:boolean,
+        public isAllocated:boolean,
+        // ALLOCATION FORM:
         public courseid:string,
         public emptype:string,  //employment type
         public batchid:string,

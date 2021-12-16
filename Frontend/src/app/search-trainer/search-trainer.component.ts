@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllocationService } from '../allocation.service';
-import { TrainersModel } from '../Model/trainer.Model';
+import { TrainersModel } from '../Models/trainers.model';
 @Component({
   selector: 'app-search-trainer',
   templateUrl: './search-trainer.component.html',
