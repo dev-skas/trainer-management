@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     private authService:AuthService,
     private router:Router
   ) { }
+  
   loginData ={
     email:'',
     password:''
