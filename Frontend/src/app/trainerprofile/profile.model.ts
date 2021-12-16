@@ -1,16 +1,16 @@
 export class profileModel{
     constructor(
     
-    public Name : string,
-    public Email : string,
-    public Phone : string,
-    public Address : string,
-    public HighestQualification : string,
-    public Skillset : string,
-    public CurrentCompanyName : string,
-    public CurrentDesignation : string,
-    public ICTAKCoursesHandling : string,
-    public Photo : string,
-    public ID : string,
+    public name : string,
+    public email : string,
+    public phone : string,
+    public address : string,
+    public h_qualification : string,
+    public skillSet : string,
+    public company_name : string,
+    public designation : string,
+    public courses : string,
+    public img : string
+    
     ){}
 }

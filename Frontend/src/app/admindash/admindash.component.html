@@ -5,8 +5,8 @@
     
     <div class="row g-4">
        
-        
-        <div [class.hide]="!item.approved" *ngFor="let item of list"  class="col-md-6 col-lg-3">
+        <!-- [class.hide]="!trainer.approved"  -->
+        <div *ngFor="let trainer of trainers"  class="col-md-6 col-lg-3">
            
             <div   class="card bg-light">
                 <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
@@ -14,9 +14,9 @@
                   </span>
                     <img src=""  class="img " alt="">
                     <div class="card-body text-center">
-                    <h5 class="card-title "> {{item.Name}}</h5>
-                    <h6>course</h6>
-                    <a href="" class="btn btn-secondary">
+                    <h5 class="card-title "> {{trainer.name}}</h5>
+                    <h6>{{trainer.courses}}</h6>
+                    <a  class="btn btn-secondary" (click)=approve(trainer); >
                        Approve
                     </a>
                 </div>
