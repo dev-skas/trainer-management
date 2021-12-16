@@ -19,7 +19,8 @@ export class TrainersModel{
       public scheduletime:String,
       public startdate:String,
       public enddate:String,
-      public venue:String,
+      public venue: String,
+      public isApproved:Boolean
 
 
 

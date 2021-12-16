@@ -11,6 +11,13 @@ app.use(express.json()) //This is instead of using body parser
 app.use(express.urlencoded({ extended: true }));
 // app.use('/public',express.static('./public'))
 app.use(cors());
+
+const signUpRouter = require('./src/routes/signUpRoute');
+app.post('/registerTrainer',signUpRouter);
+const loginRouter = require('./src/routes/loginRoute')
+app.post('/login', loginRouter)
+
+
 app.get('/trainers',function(req,res){      //getting trainers details
     trainerData.find()
     .then(function(trainers){
@@ -19,6 +26,7 @@ app.get('/trainers',function(req,res){      //getting trainers details
 
     });
 });
+
 app.put('/approve',(req,res)=>{   //aprrove trainers
     console.log(req.body)
     id=req.body._id;
@@ -62,10 +70,7 @@ app.post('/editprofile',function(req,res){
     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log(req.body);
 //signup
-const signUpRouter = require('./src/routes/signUpRoute');
-app.post('/registerTrainer',signUpRouter);
-const loginRouter = require('./src/routes/loginRoute')
-app.post('/login',loginRouter)
+
 
     var trainerData ={
         _id : req.body.trainerData._id,

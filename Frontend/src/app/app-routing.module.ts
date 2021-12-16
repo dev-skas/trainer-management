@@ -11,7 +11,8 @@ import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.compo
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 
 
-const routes: Routes = [{ path: "", component: HomeComponent },
+const routes: Routes = [
+  { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignUpComponent },
   { path: "profile", component: TrainerprofileComponent },

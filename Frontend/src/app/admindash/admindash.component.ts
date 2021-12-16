@@ -15,8 +15,11 @@ import { TrainersModel } from '../Model/trainer.Model';
 export class AdmindashComponent implements OnInit {
 
 
-  trainers:TrainersModel[];
-  constructor(private _allocate:AllocationService,private _router:Router) {  this.trainers=[];
+  trainers: TrainersModel[];
+  
+  constructor(private _allocate: AllocationService, private _router: Router)
+  {
+    this.trainers = [];
   }
 
   ngOnInit(): void {
@@ -26,10 +29,15 @@ export class AdmindashComponent implements OnInit {
       this.trainers=JSON.parse(JSON.stringify(data));
       console.log(this.trainers);
     })
-    }
+  }
+
+
+  
     approve(trainer:any){
       localStorage.setItem("trainerid",trainer._id.toString());
-      this._allocate.approvetrainer(trainer);   
+      this._allocate.approvetrainer(trainer);
+      
+
 
 
     }

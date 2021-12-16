@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule} from '@angular/common/http';
+// import { HttpClientModule} from '@angular/common/http';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -18,7 +18,7 @@ import { EditDetailsFormComponent } from './edit-details-form/edit-details-form.
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 // import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
 import { SearchTrainerComponent } from './search-trainer/search-trainer.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.component';
 import { AllocationComponent } from './allocation/allocation.component';
@@ -28,7 +28,7 @@ import { AdmindashComponent } from './admindash/admindash.component';
 
 import { AuthService } from './auth.service';
 
-import {HttpClientModule} from '@angular/common/http';
+
 
 
 
@@ -58,10 +58,10 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    AuthService
+    AuthService,
 
 
-    Ng2SearchPipeModule,
+    // Ng2SearchPipeModule,
 
 
     FormsModule,

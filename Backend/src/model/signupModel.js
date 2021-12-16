@@ -31,25 +31,13 @@ const TrainerSchema = new Schema({
     courseid:String,
     emptype:String,  //employment type
 
-  
-    Unique_ID:String,
-    courseid:String,
-    emptype:String,
-
     batchid:String,
     scheduletime:String,
     startdate:String,
     enddate:String,
-
-    venue:String
-
-    venue:String,
-
-  
+    venue:String,  
     employmentType:String,
-    Unique_ID:String
-
-
+  
 });
 const trainerData = mongoose.model('trainerData',TrainerSchema);
 module.exports = trainerData;
