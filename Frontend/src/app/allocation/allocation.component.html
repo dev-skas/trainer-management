@@ -75,7 +75,7 @@
         <label for="enddate">End date</label>
         <input type="date" placeholder="Click date picker to choose a date" class="form-control" #enddate="ngModel" id="enddate" name="enddate"
         [(ngModel)] = "training.enddate" min="{{allocation.value.startdate}}" [class.is-invalid]="enddate.invalid && enddate.untouched" required minlength="10">
-        <small class="text-danger"  [class.d-none]="enddate.valid || enddate.untouched">Select a date to end the course</small>
+        <small class="text-danger" *ngIf="startdate.value==enddate.value && enddate.untouched">End date must be after start date</small>
       </div>
       
     </div>
