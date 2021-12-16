@@ -12,6 +12,7 @@ mongoose.connect(MongoURI,{
 // Schema creation:
 
 const TrainerSchema = new Schema({
+    // SIGN UP:
     name:String,
     email:String,
     phone:String,
@@ -26,18 +27,15 @@ const TrainerSchema = new Schema({
     re_password:String,
     isApproved:Boolean,
     isAllocated:Boolean,
-// signUp&Login
     Unique_ID:String,
+    // ALLOCATION FORM:
     courseid:String,
     emptype:String,  //employment type
-
     batchid:String,
     scheduletime:String,
     startdate:String,
     enddate:String,
-    venue:String,  
-    employmentType:String,
-  
+    venue:String,    
 });
 const trainerData = mongoose.model('trainerData',TrainerSchema);
 module.exports = trainerData;
