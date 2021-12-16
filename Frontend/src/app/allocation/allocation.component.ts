@@ -45,11 +45,12 @@ export class AllocationComponent implements OnInit {
     this.training.batchid = event.target.value;
 
   }
-  
+
   allocate(){
   
    console.log("Allocation details: "+this.training);
 
  }
 
+  
 }
