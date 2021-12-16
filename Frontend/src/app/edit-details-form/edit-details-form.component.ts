@@ -24,8 +24,8 @@ export class EditDetailsFormComponent implements OnInit {
   ngOnInit(): void {
   
     let trainerid=localStorage.getItem("findtrainerData")
-    this.trainerservice.gettrainer(trainerid).subscribe((data:any)=>{
-      this.userItem = JSON.parse(JSON.stringify(data))
+    this.trainerservice.gettrainer(trainerid).subscribe((data)=>{
+      this.userItem = JSON.parse(JSON.stringify(data)[0])
 
     
       

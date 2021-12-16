@@ -9,7 +9,18 @@ import { TrainersModel } from '../Models/trainers.model';
   styleUrls: ['./trainerprofile.component.css']
 })
 export class TrainerprofileComponent implements OnInit {
-  profile=TrainersModel
+  profile = {
+    name:'',
+    email:'',
+    phone:'',
+    address:'',
+    h_qualification:'',
+    skillSet:'',
+    company_name:'',
+    designation:'',
+    img:'',
+    
+  }
 
 
   constructor(private router: Router,private trainerservice:TrainerService) {}
@@ -18,8 +29,8 @@ export class TrainerprofileComponent implements OnInit {
     let trainerid=localStorage.getItem("findtrainerData")
     this.trainerservice.gettrainer(trainerid).subscribe((data:any)=>{
       this.profile = JSON.parse(JSON.stringify(data))
+      
 
-    console.log(this.profile)
       
     })
   }

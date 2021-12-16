@@ -18,13 +18,13 @@ data:any;
     this._allocate.gettrainerdtl().subscribe((data)=>{
       
       this.trainers=JSON.parse(JSON.stringify(data));
-      console.log("trainers"+this.trainers);
+      
     })
   }
   
   allocate(item:any){
     localStorage.setItem("trainerid",item._id.toString());
-    console.log("ys")
+   
     // console.log("aa"+item.email)
     this._router.navigate(['admin/allocate'])
     

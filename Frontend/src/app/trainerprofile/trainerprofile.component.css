@@ -11,6 +11,7 @@
   }
   
   button {
+    margin: 10px;
     border: none;
     outline: 0;
     display: inline-block;
@@ -56,6 +57,7 @@
   .student-profile .card h3 {
     font-size: 20px;
     font-weight: 700;
+    color: black;
   }
   
   .student-profile .card p {
@@ -71,6 +73,7 @@
   }
 
   .info{
+    background-color: white;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
  border: 1px solid rgba(0,0,0,.125);
     

@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SearchTrainerComponent } from './search-trainer/search-trainer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.component';
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 
 

@@ -14,7 +14,7 @@ import { EditDetailsFormComponent } from './edit-details-form/edit-details-form.
 
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 // import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
-// import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.component';
 import { HomeComponent } from './home/home.component';
@@ -50,7 +50,7 @@ import { AdmindashComponent } from './admindash/admindash.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // Ng2SearchPipeModule,
+    Ng2SearchPipeModule,
     FormsModule,
     HttpClientModule
   ],

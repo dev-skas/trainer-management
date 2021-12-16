@@ -12,6 +12,7 @@ export class AllocationService {
     return this.http.get('http://localhost:3000/trainers')
 
   }
+
   gettrainerdtl()
   {
     return this.http.get('http://localhost:3000/trainerdtl')
@@ -26,6 +27,7 @@ export class AllocationService {
     return this.http.get('http://localhost:3000/'+trainerId)
 
   }
+  
   allocate(trainerdtls:any){
     return this.http.put<any>('http://localhost:3000/allocate',trainerdtls)
     .subscribe((data)=>{
