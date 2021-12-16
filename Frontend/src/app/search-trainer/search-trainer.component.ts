@@ -21,6 +21,7 @@ data:any;
       console.log("trainers"+this.trainers);
     })
   }
+  
   allocate(item:any){
     localStorage.setItem("trainerid",item._id.toString());
     console.log("ys")

@@ -16,7 +16,7 @@
   </div> -->
   <!-- </div> -->
   <br>
-  <table class="table">
+  <table class="table text-white ">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -32,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trainer of trainers | filter:data">
+      <tr *ngFor="let trainer of trainers ">
         <td>{{trainer.Unique_ID}}</td>
         <td>{{trainer.name}}</td>
         <td>{{trainer.email}}</td>

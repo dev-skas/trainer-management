@@ -28,13 +28,13 @@ export class AllocationComponent implements OnInit {
 
   ngOnInit(): void {
     //for test
-    localStorage.setItem("trainerid", "61bade63ee382f10e1d9fa73")
+
     
     let trainerId=localStorage.getItem("trainerid");
-    console.log(trainerId)
+ 
     this._allocate.gettrainerdtls(trainerId).subscribe((data)=>{
       this.trainerdtls=JSON.parse(JSON.stringify(data));
-      console.log(this.trainerdtls.name)
+      
     })
   }
 
@@ -47,21 +47,16 @@ export class AllocationComponent implements OnInit {
 
   }
 
-  allocate(trainerdtls:any){
+  allocate(trainerdtls: any) {
    
     this._allocate.allocate(this.trainerdtls);
    
     console.log("called");
     alert("success");
-    this._router.navigate(['admin']);
+    this._router.navigate(['/admin/searchtrainer']);
 
 
-  allocate(){
-
-  
-   console.log("Allocation details: "+this.trainerdtls);
-
- }
+  }
 
   
 }
