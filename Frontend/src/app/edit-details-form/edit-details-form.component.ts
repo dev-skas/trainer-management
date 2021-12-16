@@ -23,6 +23,13 @@ export class EditDetailsFormComponent implements OnInit {
 
   ngOnInit(): void {
   
+    let trainerid=localStorage.getItem("findtrainerData")
+    this.trainerservice.gettrainer(trainerid).subscribe((data:any)=>{
+      this.userItem = JSON.parse(JSON.stringify(data))
+
+    
+      
+    })
 
  
 // edit trainer profile...................
@@ -32,7 +39,6 @@ export class EditDetailsFormComponent implements OnInit {
   edittrainer()
   {    
     this.trainerservice.edittrainer(this.userItem);   
-    alert("Success");
     this.router.navigate(['profile']);
   }
   

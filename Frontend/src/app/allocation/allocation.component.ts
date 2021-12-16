@@ -27,6 +27,9 @@ export class AllocationComponent implements OnInit {
   constructor(private _allocate:AllocationService,private _router:Router) { }
 
   ngOnInit(): void {
+    //for test
+    localStorage.setItem("trainerid", "61bade63ee382f10e1d9fa73")
+    
     let trainerId=localStorage.getItem("trainerid");
     console.log(trainerId)
     this._allocate.gettrainerdtls(trainerId).subscribe((data)=>{
@@ -34,6 +37,7 @@ export class AllocationComponent implements OnInit {
       console.log(this.trainerdtls.name)
     })
   }
+
   cidSelect(event:any){
     this.trainerdtls.courseid = event.target.value;
 
@@ -42,6 +46,7 @@ export class AllocationComponent implements OnInit {
     this.trainerdtls.batchid = event.target.value;
 
   }
+
   allocate(trainerdtls:any){
    
     this._allocate.allocate(this.trainerdtls);
@@ -49,9 +54,14 @@ export class AllocationComponent implements OnInit {
     console.log("called");
     alert("success");
     this._router.navigate(['admin']);
+
+
+  allocate(){
+
   
    console.log("Allocation details: "+this.trainerdtls);
 
  }
 
+  
 }

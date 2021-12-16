@@ -18,12 +18,33 @@ export class LoginComponent implements OnInit {
     email:'',
     password:''
   }
+  user:any
   ngOnInit(): void {
   }
 
   Login(){
-    this.authService.userLogin(this.loginData)
-    alert("Login Success")
-    this.router.navigate(['profile'])    
+
+    
+
+    this.authService.userLogin(this.loginData).subscribe(res => {
+
+      this.user = res 
+
+      if (this.user.role == "admin"){
+        this.router.navigate(['admin'])    
+        
+      } else {
+      localStorage.setItem("findtrainerData",this.user.id)
+
+        this.router.navigate(['profile'])    
+        
+      }      
+
+
+    },
+      err => {
+      console.log(err)
+    })
+
   }
 }

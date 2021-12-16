@@ -7,8 +7,9 @@ app.post('/login',(req,res)=>{
     console.log(req.body)
     let adminEmail = 'admin@gmail.com';
     let adminPass = '1234';
-    if(userDetails.email == adminEmail && userDetails.password == adminPass){
-        console.log("Admin logged in");
+    if (userDetails.email == adminEmail && userDetails.password == adminPass) {
+        res.status(200).send({ role: "admin", msg: "Trainer logged In" })
+        
     } else {
         signUpModel.findOne({email:userDetails.email,pass:userDetails.password},(err,trainer)=>{
             if(err){
@@ -17,13 +18,14 @@ app.post('/login',(req,res)=>{
             else if(!trainer){
                 res.status(401).send("Invalid User Details/ User doesnt exist")
             }
-            else if(trainer){
-
-                console.log("Trainer logged In");
+            else if (trainer) {
+                console.log(trainer)
+                res.status(200).send({role:"user",msg:"Trainer logged In",id:trainer._id})
+               
             }
             else{
-                console.log("Login Failed");
-                res.send()
+                res.status(401).send("Login Failed")
+
             }
         })
     }

@@ -90,7 +90,7 @@ app.get('/profile/:id',function(req,res){
     
     res.header("Access-Control-Allow-Origin","*")
     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS')
-    TrainerSchema.findOne({"_id":id})
+    trainerData.findOne({"_id":id})
     
           .then(function(trainerData){
               console.log(trainerData);
@@ -109,7 +109,8 @@ app.post('/editprofile',function(req,res){
 
 
 
-    var trainerData ={
+
+    var trainerdata ={
         _id : req.body.trainerData._id,
         name : req.body.trainerData.name,
         email : req.body.trainerData.email,
@@ -124,10 +125,11 @@ app.post('/editprofile',function(req,res){
        
     
     }
-console.log("Data got in server in edit " +trainerData._id);
+
 trainerData.updateOne(
-    {_id:req.body.trainerData._id},{$set:trainerData},
-     function(err,res){
+    {_id:req.body.trainerData._id},{$set:trainerdata},
+    function (err, res) {
+        console.log("Data got in server in edit " +trainerdata._id);
      if(err){
          console.log(err)
         }
