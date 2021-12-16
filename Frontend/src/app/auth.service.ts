@@ -21,7 +21,6 @@ export class AuthService {
   // Login Trainer
   userLogin(trainer:any){
     return this.http.post("http://localhost:3000/login",trainer)
-    .subscribe(data=>{console.log(data);
-    })
+   
   }
 }
