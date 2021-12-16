@@ -22,6 +22,8 @@ export class AllocationComponent implements OnInit {
   
   
   }
+  date = new Date().toISOString().slice(0, 10);
+
   constructor(private _allocate:AllocationService,private _router:Router) { }
 
   ngOnInit(): void {
@@ -32,14 +34,14 @@ export class AllocationComponent implements OnInit {
       console.log(this.trainerdtls.name)
     })
   }
-//   cidSelect(event:any){
-//     this.training.cid = event.target.value;
+  cidSelect(event:any){
+    this.trainerdtls.courseid = event.target.value;
 
-//   }
-//   bidSelect(event:any){
-//     this.training.bid = event.target.value;
+  }
+  bidSelect(event:any){
+    this.trainerdtls.batchid = event.target.value;
 
-//   }
+  }
   allocate(trainerdtls:any){
    
     this._allocate.allocate(this.trainerdtls);

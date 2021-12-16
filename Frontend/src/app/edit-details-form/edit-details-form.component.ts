@@ -16,7 +16,6 @@ export class EditDetailsFormComponent implements OnInit {
     skillSet:'',
     company_name:'',
     designation:'',
-    courses:'',
     img:'',
     
   }
@@ -39,15 +38,8 @@ export class EditDetailsFormComponent implements OnInit {
   
 // ...................
 
-  courseChange(event:any){
-    // console.log(event.target.value);
-    this.userItem.courses = event.target.value;
-     
-  }
-  Edit(){
-    console.log("The edit details: " +JSON.stringify(this.userItem));
-    
-  }
+  
+  
 
 
 

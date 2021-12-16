@@ -28,7 +28,8 @@ export class TrainerprofileComponent implements OnInit {
     let trainerid=localStorage.getItem("findtrainerData")
     this.trainerservice.gettrainer(trainerid).subscribe((data:any)=>{
       this.profile=JSON.parse(JSON.stringify(data));
-  })
+    })
+    console.log(this.profile)
   }
   }
 

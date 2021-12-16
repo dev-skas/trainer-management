@@ -9,7 +9,7 @@ import { TrainersModel } from '../Models/trainers.model';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  userItem = new TrainersModel('','','','','','','','','','','','','','','','','','','','');
+  userItem = new TrainersModel('','','','','','','','','','','','','',false,false,'','','','','','','');
   
   constructor(
     private authService:AuthService,
