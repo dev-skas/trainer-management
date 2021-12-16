@@ -37,8 +37,8 @@
     <label for="designation">Current Designation</label>
     <input type="text" class="form-control" placeholder="Enter Current Designation" id="designation" name="designation" [(ngModel)] ="userItem.designation">
     <br>
-    <label for="courses">ICTAK Courses Handling</label>
-    <!-- The below courseChange($event) helps us to get the value that is selected from the dropdown menu -->
+
+    <!-- <label for="courses">ICTAK Courses Handling</label>
     <select name="courses" class="form-control" id="courses"(change)="courseChange($event)">
       <option disabled value="Choose Course" selected>Choose Course</option>
       <option value="Fullstack Development">Fullstack Development</option>
@@ -47,7 +47,8 @@
       <option value="Artificial Intelligence">Artificial Intelligence</option>
 
     </select>
-    <br>
+    <br> -->
+    
     <label for="img">Add Image </label>
     <input class="form-control" type="file" id="img" name="img" accept="image/,.png,.jpg,.jpeg" [(ngModel)]="userItem.img" >
       <br>

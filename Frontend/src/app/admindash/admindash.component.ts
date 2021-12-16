@@ -8,6 +8,7 @@ import {
   templateUrl: './admindash.component.html',
   styleUrls: ['./admindash.component.css']
 })
+  
 export class AdmindashComponent implements OnInit {
 
 
