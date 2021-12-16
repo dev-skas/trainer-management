@@ -84,7 +84,7 @@
         
           <label for="venue">Meeting link/venue</label>
           <input type="text" class="form-control" #venue="ngModel" name="venue" id="venue"
-          [(ngModel)] = "training.venue" [class.is-invalid]="venue.invalid && venue.untouched" required minlength="4">
+          [(ngModel)] = "training.venue" [class.is-invalid]="venue.invalid && venue.untouched" required pattern="[A-Za-z\s0-9\.\:\_\-\/]{2,50}">
           <small class="text-danger" [class.d-none]="venue.valid || venue.untouched">Enter meet link/venue</small>
     </div>
     <br>
