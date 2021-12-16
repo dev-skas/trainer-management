@@ -31,19 +31,19 @@
         <th scope="col">Allocate</th>
       </tr>
     </thead>
-    <!-- <tbody>
-      <tr *ngFor="let trainer of trainers ">
-        <td>{{trainer.id}}</td>
+    <tbody>
+      <tr *ngFor="let trainer of trainers | filter:data">
+        <td>{{trainer.Unique_ID}}</td>
         <td>{{trainer.name}}</td>
         <td>{{trainer.email}}</td>
         <td>{{trainer.phone}}</td>
-        <td>{{trainer.course}}</td>
-        <td>{{trainer.qulification}}</td>
-        <td>{{trainer.skill}}</td>
-        <td>{{trainer.company}}</td>
+        <td>{{trainer.courses}}</td>
+        <td>{{trainer.h_qualification}}</td>
+        <td>{{trainer.skillSet}}</td>
+        <td>{{trainer.company_name}}</td>
         <td>{{trainer.designation}}</td>
         <td><a class="btn btn-success" (click)=allocate(trainer)>Allocate</a></td>
       </tr>
-    </tbody> -->
+    </tbody>
   </table>
 </div>

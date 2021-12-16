@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   Login(){
+
+    
+
     this.authService.userLogin(this.loginData).subscribe(res => {
 
       this.user = res 
@@ -42,5 +45,6 @@ export class LoginComponent implements OnInit {
       err => {
       console.log(err)
     })
+
   }
 }

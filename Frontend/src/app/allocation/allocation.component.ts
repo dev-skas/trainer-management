@@ -8,21 +8,22 @@ import { AllocationService } from '../allocation.service';
   styleUrls: ['./allocation.component.css']
 })
 export class AllocationComponent implements OnInit {
-  training = {
+  trainerdtls = {
     Unique_ID :'',
     name:'',
-    emptype:'',
     courses:'',
     courseid:'',
     batchid:'',
     scheduletime:'',
     startdate:'',
     enddate:'',
-    venue:''
+    venue:'',
+    emptype:''
   
   
   }
   date = new Date().toISOString().slice(0, 10);
+
   constructor(private _allocate:AllocationService,private _router:Router) { }
 
   ngOnInit(): void {
@@ -32,23 +33,33 @@ export class AllocationComponent implements OnInit {
     let trainerId=localStorage.getItem("trainerid");
     console.log(trainerId)
     this._allocate.gettrainerdtls(trainerId).subscribe((data)=>{
-      this.training=JSON.parse(JSON.stringify(data));
-      console.log(this.training.name)
+      this.trainerdtls=JSON.parse(JSON.stringify(data));
+      console.log(this.trainerdtls.name)
     })
   }
 
   cidSelect(event:any){
-    this.training.courseid = event.target.value;
+    this.trainerdtls.courseid = event.target.value;
 
   }
   bidSelect(event:any){
-    this.training.batchid = event.target.value;
+    this.trainerdtls.batchid = event.target.value;
 
   }
 
+  allocate(trainerdtls:any){
+   
+    this._allocate.allocate(this.trainerdtls);
+   
+    console.log("called");
+    alert("success");
+    this._router.navigate(['admin']);
+
+
   allocate(){
+
   
-   console.log("Allocation details: "+this.training);
+   console.log("Allocation details: "+this.trainerdtls);
 
  }
 

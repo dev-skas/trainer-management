@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: "signup", component: SignUpComponent },
   { path: "profile", component: TrainerprofileComponent },
   { path: "editprofile", component: EditDetailsFormComponent },
-  { path: "admin", component: AdmindashComponent },
+  {path:"admin",component:AdmindashComponent},
   {path:"admin/allocate",component:AllocationComponent},
   {path:"admin/searchtrainer",component:SearchTrainerComponent}];
 
