@@ -107,10 +107,7 @@ app.post('/editprofile',function(req,res){
     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
     console.log(req.body);
 
-
-
-
-    var trainerdata ={
+    var trainerData ={
         _id : req.body.trainerData._id,
         name : req.body.trainerData.name,
         email : req.body.trainerData.email,
