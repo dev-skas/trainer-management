@@ -1,0 +1,26 @@
+
+.hide{
+  display: none;
+}
+.scoll{
+  overflow-x: scroll;
+}
+
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scoll::-webkit-scrollbar {
+      display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scoll {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .search{
+    width: 80%;
+     margin: 30px auto;
+     height: 50px; 
+
+  }

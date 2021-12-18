@@ -1,0 +1,103 @@
+<!-- In this Component, I have only made the form work in getting the input from user and display it in console log
+ I have not done form validation, form styling  but I wrote <br> to see form clearly.
+ I used [(ngModel)] for img file input but when multer gets implemented, it might have to be changed
+   --Arathi
+-->
+
+<app-main-home></app-main-home>
+
+
+
+<h1>Sign UP</h1>
+<br>
+<form #signup="ngForm" (ngSubmit)="addUser()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" placeholder="Enter Name " id="name" name="name" #name="ngModel" [(ngModel)] = "userItem.name" [class.is-invalid]="name.invalid && name.untouched" pattern="[A-Za-z\s]{2,25}" required>
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Enter valid name</small>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" placeholder="Enter Email " id="email" name="email" #email="ngModel" [(ngModel)] ="userItem.email" [class.is-invalid]="email.invalid && email.untouched" pattern="([A-Za-z0-9\.-]+)@([A-Za-z0-9\-]+)\.([a-z]{2,3})(.[a-z]{2,3})?$"  required>
+            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Enter valid mail Id</small>
+        </div>
+    </div>
+    <br>
+   <div class="row">
+        <div class="col-md-4 col-sm-12">
+
+            <label for="phone">Mobile No.</label>
+            <input type="text" class="form-control" placeholder="XXXXXXXXXX" id="phone" name="phone" #phone="ngModel" [(ngModel)]="userItem.phone" [class.is-invalid]="phone.invalid && phone.untouched" pattern="[0-9\s]{10,10}" required>
+            <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Enter valid mobileNo</small>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" placeholder="Enter Address " id="address" name="address" #address="ngModel" [(ngModel)] ="userItem.address" [class.is-invalid]="address.invalid && address.untouched" pattern="[A-Za-z\s0-9,]{2,200}"  required>
+        <small class="text-danger" [class.d-none]="address.valid || address.untouched">Enter valid address</small>
+      </div>
+   </div>
+   <br>
+   <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <label for="h_qualification">Highest Qualification</label>
+            <input type="text" class="form-control" placeholder="Enter Highest Qualification" id="h_qualification" #h_qualification="ngModel" name="h_qualification" [(ngModel)] ="userItem.h_qualification" [class.is-invalid]="h_qualification.invalid && h_qualification.untouched" required pattern="[A-Za-z\s0-9\+.]{2,25}">
+            <small class="text-danger" [class.d-none]="h_qualification.valid || h_qualification.untouched">Enter valid qualification</small>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label for="skillSet">Skill Set</label>
+            <input type="text" class="form-control" placeholder="Enter Skill Set" id="skillSet" name="skillSet" #skillSet="ngModel" [(ngModel)]="userItem.skillSet" [class.is-invalid]="skillSet.invalid && skillSet.untouched" required pattern="[A-Za-z\s0-9\+.,]{2,50}">
+            <small class="text-danger" [class.d-none]="skillSet.valid || skillSet.untouched">Enter valid skills</small>
+        </div>
+   </div>
+   <br>
+   <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <label for="company_name">Current Company Name</label>
+            <input type="text" class="form-control" placeholder="Enter Current Company Name" id="company_name" #company_name="ngModel" name="company_name" [(ngModel)] = "userItem.company_name" [class.is-invalid]="company_name.invalid && company_name.untouched" pattern="[A-Za-z\s]{2,25}" required>
+            <small class="text-danger" [class.d-none]="company_name.valid || company_name.untouched">Enter valid company name</small>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label for="designation">Current Designation</label>
+            <input type="text" class="form-control" placeholder="Enter Current Designation" id="designation" name="designation" #designation="ngModel" [(ngModel)] ="userItem.designation" [class.is-invalid]="designation.invalid && designation.untouched" pattern="[A-Za-z\s]{2,25}" required>
+            <small class="text-danger" [class.d-none]="designation.valid || designation.untouched">Enter valid designation</small>
+        </div>
+   </div>
+   <br>
+   <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <label for="img">Your Photo</label>
+            <input type="file" id="img" class="form-control" name="img" accept="image/,.png,.jpg,.jpeg" #img="ngModel" [(ngModel)]="userItem.img" (change)="onFileSelect($event)" [class.is-invalid]="img.invalid && img.untouched" required>
+            <small class="text-danger" [class.d-none]="img.valid || img.untouched">Add your photo</small>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label for="courses">ICTAK Courses Handling</label>
+            <!-- The below courseChange($event) helps us to get the value that is selected from the dropdown menu -->
+            <select class="form-control" name="courses" id="courses" #courses="ngModel" [(ngModel)]="userItem.courses" (change)="courseChange($event)" [class.is-invalid]="courses.invalid && courses.untouched" required>
+            <option value="" disabled>Choose Course</option>
+            <option value="Full Stack Development">Fullstack Development</option>
+            <option value="Data Science and analytics">Data Science and analytics</option>
+            <option value="Cyber Security Analyst">Cyber Security</option>
+            <option value="Robotic Process Automation">Robotic Process Automation</option>
+        
+            </select>
+            <small class="text-danger" [class.d-none]="courses.valid || courses.untouched">Please choose a course</small>
+        </div>
+   </div>
+   <br>
+   <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <label for="password">Enter Password</label>
+            <input type="password" class="form-control" name="password" id="password" #password="ngModel" [(ngModel)]="userItem.password" [class.is-invalid]="password.invalid && password.untouched" pattern="(?=.*\d)(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}$" required>
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password must contain atleast 1 capital letter,1 small letter,1 digit and 1 special character and require minimum 8 characters </small>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label for="re_password">Re-Type Password</label>
+            <input type="password" class="form-control" name="re_password" id="re_password" #re_password="ngModel" [(ngModel)]="userItem.re_password" [class.is-invalid]="re_password.invalid && re_password.untouched" pattern="{{signup.value.password}}" required min="{{signup.value.password}}" max="{{signup.value.password}}">
+            <small value="" id="error" class="text-danger" [class.d-none]="re_password.valid || re_password.untouched">Passwords must be same</small>
+        </div>
+   </div>
+   <br>
+    <button type="submit" class="btn btn-primary" [disabled]="signup.form.invalid">Sign Up</button>
+   
+</form>
