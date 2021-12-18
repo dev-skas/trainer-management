@@ -2,7 +2,7 @@
 
 <h1>Edit Personel details</h1>
 <br>
-<form #signup="ngForm" (ngSubmit)="edittrainer()" enctype="multipart/form-data">
+<form #edit="ngForm" (ngSubmit)="edittrainer()" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <label for="name">Name</label>
@@ -65,6 +65,6 @@
     </div>
    <br>
    
-    <button type="submit" class="btn btn-success" [disabled]="signup.form.invalid">Edit</button>
+    <button type="submit" class="btn btn-success" [disabled]="edit.form.invalid">Edit</button>
    
 </form>
