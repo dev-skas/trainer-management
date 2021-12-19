@@ -11,11 +11,14 @@ export class AuthService {
   ) { }
 
   // Register New Trainer:
-  newTrainer(item:any){
+  newTrainer(formData:FormData){
     
-    return this.http.post("http://localhost:3000/registerTrainer",{"trainer":item})
-    .subscribe(data=>{console.log(data);
-    });
+    return this.http.post("http://localhost:3000/registerTrainer",formData)
+    .subscribe(
+      (res)=>console.log(res),
+      (err)=>console.log(err)
+      
+    );
   }
 
   // Login Trainer

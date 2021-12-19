@@ -10,7 +10,7 @@ import { TrainersModel } from '../Models/trainers.model';
 })
 export class SignUpComponent implements OnInit {
   userItem = new TrainersModel('','','','','','','','','','','','','',false,false,'','','','','','','');
-  
+  image:any;
   constructor(
     private authService:AuthService,
     private router:Router
@@ -28,13 +28,29 @@ export class SignUpComponent implements OnInit {
   }
 
   onFileSelect(event:any){
-    
-    
-     }
+    if(event.target.files.length>0){
+      const file = event.target.files[0];
+      this.image = file;
+    }  
+  }
 
   // On button click on sign up form, addUser() will get called.
   addUser(){
-    this.authService.newTrainer(this.userItem);
+    const formData = new FormData();
+    formData.append('name',this.userItem.name)
+    formData.append('email',this.userItem.email)
+    formData.append('phone',this.userItem.phone)
+    formData.append('address',this.userItem.phone)
+    formData.append('h_qualification',this.userItem.h_qualification)
+    formData.append('skillSet',this.userItem.skillSet)
+    formData.append('company_name',this.userItem.company_name)
+    formData.append('designation',this.userItem.designation)
+    formData.append('courses',this.userItem.courses)
+    formData.append('password',this.userItem.password)
+    formData.append('re_password',this.userItem.re_password)
+    formData.append('img',this.image);
+
+    this.authService.newTrainer(formData);
     alert("Sign Up Successfull!");
     this.router.navigate(['login']);
   }
