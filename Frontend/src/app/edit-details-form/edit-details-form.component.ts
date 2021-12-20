@@ -25,14 +25,17 @@ export class EditDetailsFormComponent implements OnInit {
     img:''
   }
 
+
   // image is used to store the file selected in file input:
   image:any;
+
   constructor(public router:Router, public trainerservice:TrainerService) { }
 
   ngOnInit(): void {
   
     let trainerid=localStorage.getItem("findtrainerData")
     this.trainerservice.gettrainer(trainerid).subscribe((data)=>{
+
       this.userItem = JSON.parse(JSON.stringify(data))
 
     })
@@ -48,6 +51,7 @@ export class EditDetailsFormComponent implements OnInit {
   // Edit Trainer:
   edittrainer()
   {    
+
     const formData = new FormData();
     formData.append('_id',this.userItem._id)
     formData.append('name',this.userItem.name)
@@ -62,6 +66,10 @@ export class EditDetailsFormComponent implements OnInit {
     formData.append('dbImage',this.userItem.img) // if no file selected then this is img already in DB
     this.trainerservice.edittrainer(formData);
     alert("Edit Success!")
+
+
+//     this.trainerservice.edittrainer(this.userItem);  
+
     this.router.navigate(['profile']);
   }
   

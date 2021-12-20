@@ -36,6 +36,7 @@ app.post('/registerTrainer',upload.single('img'),async(req,res)=>{
     console.log(req.body); 
      // Generating Unique ID:
         var UniqueID = function(){
+
         return 'ICT' + Math.random().toString(36).substring(2,8)
         }
         let Unique_ID = UniqueID();
