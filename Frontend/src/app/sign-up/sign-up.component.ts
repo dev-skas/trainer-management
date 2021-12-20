@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
     formData.append('name',this.userItem.name)
     formData.append('email',this.userItem.email)
     formData.append('phone',this.userItem.phone)
-    formData.append('address',this.userItem.phone)
+    formData.append('address',this.userItem.address)
     formData.append('h_qualification',this.userItem.h_qualification)
     formData.append('skillSet',this.userItem.skillSet)
     formData.append('company_name',this.userItem.company_name)

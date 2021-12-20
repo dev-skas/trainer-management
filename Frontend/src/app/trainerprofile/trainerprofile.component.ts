@@ -21,7 +21,8 @@ export class TrainerprofileComponent implements OnInit {
     img:'',
     
   }
-
+  // The below img is to get the image name from db & store to display img in profile page
+  img:any;
 
   constructor(private router: Router,private trainerservice:TrainerService) {}
 
@@ -29,9 +30,7 @@ export class TrainerprofileComponent implements OnInit {
     let trainerid=localStorage.getItem("findtrainerData")
     this.trainerservice.gettrainer(trainerid).subscribe((data:any)=>{
       this.profile = JSON.parse(JSON.stringify(data))
-      
-
-      
+      this.img = this.profile.img
     })
   }
   }
