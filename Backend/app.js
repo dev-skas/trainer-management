@@ -38,8 +38,13 @@ app.get('/trainerdtl',function(req,res){      //getting trainers details
 app.put('/approve',(req,res)=>{   //aprrove trainers
     console.log(req.body)
     id=req.body._id;
+    emptype=req.body.emptype;
+    console.log(emptype);
+
+
     trainerData.findByIdAndUpdate({"_id":id},{$set:{
-        "isApproved":"true"
+        "isApproved":"true",
+        "emptype":emptype
       }})
       .then(function(){
         res.send()
@@ -65,7 +70,6 @@ app.put('/approve',(req,res)=>{   //aprrove trainers
         startdate=req.body.startdate,
         enddate=req.body.enddate,
         venue=req.body.venue,
-        emptype=req.body.emptype,
 
     trainerData.findByIdAndUpdate({"_id":id},{$set:{
         "courseid":courseid,
@@ -74,7 +78,6 @@ app.put('/approve',(req,res)=>{   //aprrove trainers
         "startdate":startdate,
        "enddate":enddate,
         "venue":venue,
-        "emptype":emptype,
         "isAllocated":"true" //employment type
 
         }})
@@ -82,6 +85,17 @@ app.put('/approve',(req,res)=>{   //aprrove trainers
           res.send()
         })
         })
+
+
+        app.delete('/reject/:id',(req,res)=>{
+            id=req.params.id;
+         console.log(id);
+            trainerData.findByIdAndDelete({"_id":id})
+        .then(()=>{
+            console.log("success delete");
+            res.send();
+        })
+    })
 
 // trainer profile
 
@@ -108,9 +122,7 @@ app.post('/editprofile',function(req,res){
     console.log(req.body);
 
 
-
-
-    var trainerdata ={
+    var trainerData ={
         _id : req.body.trainerData._id,
         name : req.body.trainerData.name,
         email : req.body.trainerData.email,

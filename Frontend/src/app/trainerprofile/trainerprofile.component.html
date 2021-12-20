@@ -8,13 +8,17 @@
       <div class="col-lg-4">
         <div class="card  ">
           <div class="card-header  text-center">
-            <img class="profile_img" src="https://placeimg.com/640/480/arch/any" alt="">
+            <img class="profile_img" [src]='profile.img' alt="">
             <h3>{{profile.name}}</h3>
           </div>
           <div class="card-body">
-            <p class="mb-0"><strong class="pr-1">Student ID:</strong>321000001</p>
-            <p class="mb-0"><strong class="pr-1">Class:</strong>4</p>
-            <p class="mb-0"><strong class="pr-1">Section:</strong>A</p>
+            <p class="mb-0"><strong class="pr-1">Email</strong>{{profile.email}}</p>
+            <p class="mb-0"><strong class="pr-1">Phone</strong>{{profile.phone}}</p>
+            <p class="mb-0"><strong class="pr-1">Address</strong>{{profile.address}}</p>
+            
+            
+       
+         
           </div>
           <button routerLink="/editprofile"> Edit Profile</button>
         </div>
@@ -27,30 +31,27 @@
           <div class="text-dark card-body pt-0">
             <table class="table ">
               <tr>
-                <th width="30%">Roll</th>
+
+                <th width="30%">highest qualification</th>
                 <td width="2%">:</td>
-                <td>125</td>
+                <td>{{profile.h_qualification}}</td>
               </tr>
               <tr>
-                <th width="30%">Academic Year	</th>
+                <th width="30%">Company name	</th>
                 <td width="2%">:</td>
-                <td>2020</td>
+                <td>{{profile.company_name}}</td>
               </tr>
               <tr>
-                <th width="30%">Gender</th>
+                <th width="30%">Designation</th>
                 <td width="2%">:</td>
-                <td>Male</td>
+                <td>{{profile.designation}}</td>
               </tr>
               <tr>
-                <th width="30%">Religion</th>
+                <th width="30%">Skillset</th>
                 <td width="2%">:</td>
-                <td>Group</td>
+                <td>{{profile.skillSet}}</td>
               </tr>
-              <tr>
-                <th width="30%">blood</th>
-                <td width="2%">:</td>
-                <td>B+</td>
-              </tr>
+             
             </table>
           </div>
         </div>
