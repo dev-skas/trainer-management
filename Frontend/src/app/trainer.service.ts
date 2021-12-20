@@ -13,13 +13,10 @@ export class TrainerService {
   
   }
 
-// edit trainer profilebooks
-
-
-  edittrainer(item:any)
+// edit trainer profile:
+  edittrainer(formData:FormData)
   {
-     return this.http.post("http://localhost:3000/editprofile",{"trainerData":item})
-   
+     return this.http.put("http://localhost:3000/editprofile",formData)
     .subscribe(data=>{console.log(data)})
 
   }
