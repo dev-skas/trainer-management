@@ -59,7 +59,7 @@
    <div class="row">
         <div class="col-lg-12 col-sm-12">
             <label for="img">Your Photo</label>
-            <input type="file" id="img" class="form-control" name="img" accept="image/,.png,.jpg,.jpeg" #img="ngModel" [(ngModel)]="userItem.img" [class.is-invalid]="img.invalid && img.untouched" required>
+            <input type="file" id="img" class="form-control" name="img" accept="image/,.png,.jpg,.jpeg" #img="ngModel" [(ngModel)]="userImage.img" (change)="onFileSelect($event)" [class.is-invalid]="img.invalid">
             <small class="text-danger" [class.d-none]="img.valid || img.untouched">Add your photo</small>
         </div>
     </div>

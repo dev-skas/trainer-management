@@ -5,7 +5,31 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 3000;
 const trainerData = require('./src/model/signupModel');  // This is the model containing trainer sign up data
-
+// MULTER:
+const DIR = '../Frontend/src/assets/uploads';
+const storage = multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,DIR);
+    },
+    filename:(req,file,cb)=>{
+        const fileName = file.originalname.toLocaleLowerCase().split(' ').join('-');
+        cb(null,fileName);
+    }
+});
+var upload = multer({
+    storage:storage,
+    limits:{
+        fileSize:1024 * 1024 * 5
+    },
+    // fileFilter:(req, file, cb)=>{
+    //     if(file.mimetype == "image/png" || file.mimetype == "image/jpp" || file.mimetype == "image/jpeg"){
+    //         cb(null,true);
+    //     } else{
+    //         cb(null,false);
+    //         return cb(new Error('Only .png, .jpg and .jpeg format allowed'));
+    //     }
+    // }
+});
 // app. use starts here:
 app.use(express.json()) //This is instead of using body parser
 app.use(express.urlencoded({ extended: true }));
@@ -93,7 +117,7 @@ app.get('/profile/:id',function(req,res){
     trainerData.findOne({"_id":id})
     
           .then(function(trainerData){
-              console.log(trainerData);
+              // console.log("Profile = "+trainerData);
               res.send(trainerData);
           });
 });
@@ -102,37 +126,42 @@ app.get('/profile/:id',function(req,res){
 
 // to edit trainer profile
 
-app.post('/editprofile',function(req,res){
-    res.header("Access-Control-Allow-Origin","*");
-    res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
-    console.log(req.body);
+app.put('/editprofile',upload.single('img'),(req,res)=>{
+  // Here imgFile will store the image file from file input if its selected OR
+  // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up
+  let imgFile = req.file;
+  if(imgFile){
+    imgFile = imgFile.filename;
+  }else{
+    // keep the image saved during signup
+    imgFile = req.body.dbImage
+  }
 
-    var trainerData ={
-        _id : req.body.trainerData._id,
-        name : req.body.trainerData.name,
-        email : req.body.trainerData.email,
-        phone : req.body.trainerData.phone,
-        address : req.body.trainerData.address,
-        h_qualification : req.body.trainerData.h_qualification,
-        skillSet : req.body.trainerData.skillSet,
-        company_name : req.body.trainerData.company_name,
-        designation : req.body.trainerData.designation,
-        courses : req.body.trainerData.courses,
-        img : req.body.trainerData.img
-       
-    
-    }
+  id = req.body._id,
+  trainerName = req.body.name,
+  email = req.body.email,
+  phone = req.body.phone,
+  address = req.body.address,
+  h_qualification = req.body.h_qualification,
+  skillSet = req.body.skillSet,
+  company_name = req.body.company_name,
+  designation = req.body.designation,
+  img = imgFile
 
-trainerData.updateOne(
-    {_id:req.body.trainerData._id},{$set:trainerdata},
-    function (err, res) {
-        console.log("Data got in server in edit " +trainerdata._id);
-     if(err){
-         console.log(err)
-        }
-    }
-     )
-     
+  trainerData.findByIdAndUpdate({_id:id},
+                          {$set:{"name":trainerName,
+                                "email":email,
+                                "phone":phone,
+                                "address":address,
+                                "h_qualification":h_qualification,
+                                "skillSet":skillSet,
+                                "company_name":company_name,
+                                "designation":designation,
+                                "img":img}})
+              .then(()=>{
+                res.send();
+              })
+
 });
 
 
