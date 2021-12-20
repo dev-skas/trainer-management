@@ -2,7 +2,11 @@
 
 <h1>Edit Personel details</h1>
 <br>
+<<<<<<< HEAD
+<form #signup="ngForm" (ngSubmit)="edittrainer()" enctype="multipart/form-data">
+=======
 <form #edit="ngForm" (ngSubmit)="edittrainer()" enctype="multipart/form-data">
+>>>>>>> f18d2a53f93fa8a384323296743fe94c9395fa5e
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <label for="name">Name</label>
@@ -65,6 +69,10 @@
     </div>
    <br>
    
+<<<<<<< HEAD
+    <button type="submit" class="btn btn-success" [disabled]="signup.form.invalid">Edit</button>
+=======
     <button type="submit" class="btn btn-success" [disabled]="edit.form.invalid">Edit</button>
+>>>>>>> f18d2a53f93fa8a384323296743fe94c9395fa5e
    
 </form>

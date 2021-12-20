@@ -13,7 +13,12 @@ import { TrainersModel } from '../Models/trainers.model';
 })
 export class AdmindashComponent implements OnInit {
 
-
+  trainerdtls = {
+    Unique_ID :'',
+    emptype:''
+  
+  
+  }
   trainers:TrainersModel[];
   constructor(private _allocate:AllocationService,private _router:Router) {  this.trainers=[];
   }
@@ -26,13 +31,22 @@ export class AdmindashComponent implements OnInit {
       console.log(this.trainers);
     })
     }
-    approve(trainer:any){
+    approve(trainer:any,trainerdtls:any){
       // localStorage.setItem("trainerid",trainer._id.toString());
-      this._allocate.approvetrainer(trainer)
+      this._allocate.approvetrainer(trainer,this.trainerdtls)
       .subscribe((data)=>{
         console.log("approved")
+        console.log(trainerdtls)
       })   
 
+
+    }
+    reject(trainer:any){
+      console.log(trainer._id);
+
+this._allocate.rejecttrainer(trainer._id);
+
+this._router.navigate(['admin']);
 
     }
 

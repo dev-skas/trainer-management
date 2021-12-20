@@ -29,15 +29,15 @@
         <td>{{trainer.h_qualification}}</td>
         <td>{{trainer.skillSet}}</td>
         <td>{{trainer.company_name}}</td>
-        <td> <select  required >
-            <option disabled>Choose Course ID</option>
+        <td> <select id="emptype" name="emptype"  required  [(ngModel)]= trainer.emptype>
+            <option disabled>Choose Employment Type</option>
             <option>Internal</option>
             <option>Empanelled</option>
             <option>Industry Expert</option>
           </select></td>
         <td width="15%">
-            <a class="mx-2 btn btn-success" (click)=approve(trainer)>Approve</a>
-            <a class="btn btn-danger" >Reject</a>
+            <a class="mx-2 btn btn-success" (click)=approve(trainer,trainer.emptype)>Approve</a>
+            <a class="btn btn-danger" (click)=reject(trainer)>Reject</a>
         </td>
       </tr>
     </tbody>
