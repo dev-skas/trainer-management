@@ -4,8 +4,10 @@
 <!-- Student Profile -->
 <div class="student-profile py-4 "  >
   <div class="container">
+
+
     <div class="row">
-      <div class="col-lg-4">
+        <div class="col-lg-4">
         <div class="card  ">
           <div class="card-header  text-center">
             <img class="profile_img" [src]='profile.img' alt="">
@@ -15,14 +17,12 @@
             <p class="mb-0"><strong class="pr-1">Email</strong>{{profile.email}}</p>
             <p class="mb-0"><strong class="pr-1">Phone</strong>{{profile.phone}}</p>
             <p class="mb-0"><strong class="pr-1">Address</strong>{{profile.address}}</p>
-            
-            
-       
-         
-          </div>
+            </div>
           <button routerLink="/editprofile"> Edit Profile</button>
         </div>
       </div>
+
+      
       <div style="width: 100%;" class="col">
         <div class="info shadow-sm">
           <div class="card-header bg-transparent border-0">
@@ -53,9 +53,73 @@
              
             </table>
           </div>
+        
         </div>
       </div>
     </div>
+    <br><br>
+
+<div class="allocation">
+    <div style="width: 100%;" class="col">
+      <div class="info shadow-sm">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+        </div>
+        <div class="text-dark card-body pt-0">
+          <table class="table ">
+            
+            <tr>
+              <th width="30%">Start Date</th>
+              <td width="2%">:</td>
+              <!-- <td>{{profile.h_qualification}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">End Date	</th>
+              <td width="2%">:</td>
+              <!-- <td>{{profile.company_name}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">Time</th>
+              <td width="2%">:</td>
+              <!-- <td>{{profile.designation}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">Course Name</th>
+              <td width="2%">:</td>
+              <!-- <td>{{profile.skillSet}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">Course ID</th>
+              <td width="2%">:</td>
+              <!-- <td>{{profile.skillSet}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">Batch ID</th>
+              <!-- <td width="2%">:</td>
+              <td>{{profile.skillSet}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">Venue</th>
+              <td width="2%">:</td>
+              <!-- <td>{{profile.skillSet}}</td> -->
+            </tr>
+            <tr>
+              <th width="30%">Schedule</th>
+              <td width="2%">:</td>
+              <td>{{profile.skillSet}}</td>
+            </tr>
+            <button id="email" routerLink=""> Sent Email</button>
+            
+          </table>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  
+
+
+    
   </div>
 </div>
 

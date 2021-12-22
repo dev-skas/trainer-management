@@ -23,7 +23,10 @@
     width: 100%;
     font-size: 18px;
   }
-  
+  #email{
+    width:50%;
+  }
+
   a {
     text-decoration: none;
     font-size: 22px;
