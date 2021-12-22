@@ -11,7 +11,7 @@ app.post('/login',(req,res)=>{
         res.status(200).send({ role: "admin", msg: "Trainer logged In" })
         
     } else {
-        signUpModel.findOne({email:userDetails.email,pass:userDetails.password},(err,trainer)=>{
+        signUpModel.findOne({email:userDetails.email,pass:userDetails.password,isApproved:"true" },(err,trainer)=>{
             if(err){
                 res.status(401).send("Something went wrong.")
             }

@@ -18,7 +18,8 @@ export class TrainerprofileComponent implements OnInit {
     skillSet:'',
     company_name:'',
     designation:'',
-    img:'',
+    img: '',
+    isAllocated:false
     
   }
   // The below img is to get the image name from db & store to display img in profile page
