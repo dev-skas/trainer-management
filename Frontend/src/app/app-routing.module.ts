@@ -8,17 +8,17 @@ import { LoginComponent } from './login/login.component';
 import { SearchTrainerComponent } from './search-trainer/search-trainer.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
-
-
+import { AuthGuard } from './auth.guard';
+import { TrainerAuthGuard } from './trainer-auth.guard';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignUpComponent },
-  { path: "profile", component: TrainerprofileComponent },
-  { path: "editprofile", component: EditDetailsFormComponent },
-  {path:"admin",component:AdmindashComponent},
-  {path:"admin/allocate",component:AllocationComponent},
-  {path:"admin/searchtrainer",component:SearchTrainerComponent}];
+  { path: "profile",canActivate:[TrainerAuthGuard], component: TrainerprofileComponent },
+  { path: "editprofile",canActivate:[TrainerAuthGuard], component: EditDetailsFormComponent },
+  {path:"admin",canActivate:[AuthGuard],component:AdmindashComponent},
+  {path:"admin/allocate",canActivate:[AuthGuard],component:AllocationComponent},
+  {path:"admin/searchtrainer",canActivate:[AuthGuard],component:SearchTrainerComponent}];
 
 
 @NgModule({

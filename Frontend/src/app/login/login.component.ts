@@ -25,18 +25,17 @@ export class LoginComponent implements OnInit {
 
   Login(){
 
-    
-
     this.authService.userLogin(this.loginData).subscribe(res => {
 
       this.user = res 
 
       if (this.user.role == "admin"){
+        localStorage.setItem('tokenAdmin',this.user.tokenAdmin)
         this.router.navigate(['admin'])    
         
       } else {
-      localStorage.setItem("findtrainerData",this.user.id)
-
+        localStorage.setItem('tokenUser',this.user.tokenUser)
+        localStorage.setItem("findtrainerData",this.user.id)
         this.router.navigate(['profile'])    
         
       }      
