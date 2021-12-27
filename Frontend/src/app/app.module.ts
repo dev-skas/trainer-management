@@ -26,7 +26,7 @@ import { AuthService } from './auth.service';
 import { SearchTrainerComponent } from './search-trainer/search-trainer.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { AdmindashComponent } from './admindash/admindash.component';
-
+import { TokenInterceptorService } from './token-interceptor.service';
 
 
 
@@ -59,7 +59,12 @@ import { AdmindashComponent } from './admindash/admindash.component';
   providers: [
     AuthService,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
 
   ],
   bootstrap: [AppComponent]

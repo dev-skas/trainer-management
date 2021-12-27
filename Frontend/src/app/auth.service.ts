@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-
+   token:any;
   constructor(
     private http:HttpClient
   ) { }
@@ -25,5 +25,22 @@ export class AuthService {
   userLogin(trainer:any){
     return this.http.post("http://localhost:3000/login",trainer)
    
+  }
+  UserLoggedIn(){
+    return !!localStorage.getItem('tokenUser')  
+  }
+  AdminLoggedIn(){
+    return !!localStorage.getItem('tokenAdmin')
+  }
+  getToken(){
+ 
+    if(this.UserLoggedIn()){
+      this.token = localStorage.getItem('tokenUser')
+    }
+    else if(this.AdminLoggedIn()){
+     this.token = localStorage.getItem('tokenAdmin')
+    }
+    
+    return this.token;
   }
 }

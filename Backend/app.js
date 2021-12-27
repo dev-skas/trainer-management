@@ -30,6 +30,24 @@ var upload = multer({
     //     }
     // }
 });
+function verifyToken(req,res,next){
+  if(!req.headers.authorization){
+      return res.status(401).send('Unauthorized request')
+  }
+  let token = req.headers.authorization.split(' ')[1]
+  // console.log("tokenHEADER"+token);
+  if(token=='null'){
+      return res.status(401).send('Unauthorized req')
+  }
+  try {
+    let payload = jwt.verify(token,'SECRET-KEY');
+    req.userId = payload.subject
+  } catch (err) {
+    console.error("INVALID TOKEN SECRET KEY");
+    return res.status(401).send("Unauthorized request. Only access to authorized entry");
+  }
+  next();
+}
 // app. use starts here:
 app.use(express.json()) //This is instead of using body parser
 app.use(express.urlencoded({ extended: true }));
@@ -42,7 +60,7 @@ const loginRouter = require('./src/routes/loginRoute')
 app.post('/login', loginRouter)
 
 
-app.get('/trainers',function(req,res){      //getting trainers details
+app.get('/trainers',verifyToken,function(req,res){      //getting trainers details
     trainerData.find({ isApproved:"false"})
     .then(function(trainers){
       console.log("success")
@@ -50,7 +68,7 @@ app.get('/trainers',function(req,res){      //getting trainers details
 
     });
 });
-app.get('/trainerdtl',function(req,res){      //getting trainers details
+app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers details
     trainerData.find({ isAllocated: "false" ,isApproved:"true"  })
     .then(function(trainers){
       console.log("success")
@@ -59,7 +77,7 @@ app.get('/trainerdtl',function(req,res){      //getting trainers details
     });
 });
 
-app.put('/approve',(req,res)=>{   //aprrove trainers
+app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
     console.log(req.body)
     id=req.body._id;
     emptype=req.body.emptype;
@@ -85,7 +103,7 @@ app.put('/approve',(req,res)=>{   //aprrove trainers
       
       })
 
-      app.put('/allocate',function(req,res){     //allocate trainers
+      app.put('/allocate',verifyToken,function(req,res){     //allocate trainers
     console.log(req.file);
     id=req.body._id;
         courseid=req.body.courseid,
@@ -123,7 +141,7 @@ app.put('/approve',(req,res)=>{   //aprrove trainers
 
 // trainer profile
 
-app.get('/profile/:id',function(req,res){
+app.get('/profile/:id',verifyToken,function(req,res){
     const id= req.params.id;
     
     res.header("Access-Control-Allow-Origin","*")
@@ -141,7 +159,7 @@ app.get('/profile/:id',function(req,res){
 // to edit trainer profile
 
 
-app.put('/editprofile',upload.single('img'),(req,res)=>{
+app.put('/editprofile',verifyToken,upload.single('img'),(req,res)=>{
   // Here imgFile will store the image file from file input if its selected OR
   // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up
   let imgFile = req.file;
