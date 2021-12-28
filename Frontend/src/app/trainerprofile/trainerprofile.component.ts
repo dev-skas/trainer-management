@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router} from '@angular/router';
 import { TrainerService } from '../trainer.service';
-import { TrainersModel } from '../Models/trainers.model';
+
 
 @Component({
   selector: 'app-trainerprofile',
@@ -19,7 +19,14 @@ export class TrainerprofileComponent implements OnInit {
     company_name:'',
     designation:'',
     img: '',
-    isAllocated:false
+    courseid:'',
+    batchid:'',
+    scheduletime:'',
+    startdate:'',
+    enddate:'',
+    venue:'',
+    courses:'',
+    isAllocated:''
     
   }
   // The below img is to get the image name from db & store to display img in profile page
