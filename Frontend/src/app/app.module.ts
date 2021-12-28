@@ -27,6 +27,7 @@ import { SearchTrainerComponent } from './search-trainer/search-trainer.componen
 import { AllocationComponent } from './allocation/allocation.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -46,7 +47,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     AllocationComponent,
     HomeComponent,
     AdminnavComponent,
-    AdmindashComponent
+    AdmindashComponent,
+    FooterComponent
 
   ],
   imports: [
