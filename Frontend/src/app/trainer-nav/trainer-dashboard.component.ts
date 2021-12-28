@@ -12,5 +12,14 @@ export class TrainerDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  logoutUser(){
+    if(localStorage.getItem('tokenAdmin')){
+      localStorage.removeItem('tokenAdmin');
+    }
+    if(localStorage.getItem('tokenUser')){
+      localStorage.removeItem('tokenUser');
+    }
+    localStorage.removeItem('findtrainerData')
+    this.router.navigate(['/'])
+  }
 }
