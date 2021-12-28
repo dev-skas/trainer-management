@@ -3,6 +3,7 @@ const app = new express();
 const cors = require('cors');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
+var nodemailer = require('nodemailer');
 const port = process.env.PORT || 3000;
 const trainerData = require('./src/model/signupModel');  // This is the model containing trainer sign up data
 // MULTER:
@@ -77,9 +78,10 @@ app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers det
     });
 });
 
+
 app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
     console.log(req.body)
-    id=req.body._id;
+   let id=req.body._id;
     emptype=req.body.emptype;
     console.log(emptype);
 
@@ -90,8 +92,11 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
       }})
       .then(function(){
         res.send()
+        approvemail(id)
       })
-      })
+})
+      
+
       app.get('/:id',(req,res)=>{
         const id=req.params.id;
         console.log(id)
@@ -103,9 +108,11 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
       
       })
 
+
+  
       app.put('/allocate',verifyToken,function(req,res){     //allocate trainers
     console.log(req.file);
-    id=req.body._id;
+   let id=req.body._id;
         courseid=req.body.courseid,
         batchid=req.body.batchid,
         scheduletime=req.body.scheduletime,
@@ -125,6 +132,7 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
         }})
         .then(function(){
           res.send()
+          allocatemail(id)
         })
         })
 
@@ -159,66 +167,237 @@ app.get('/profile/:id',verifyToken,function(req,res){
 // to edit trainer profile
 
 
-app.put('/editprofile',verifyToken,upload.single('img'),(req,res)=>{
+app.put('/editprofile', verifyToken, upload.single('img'), (req, res) => {
   // Here imgFile will store the image file from file input if its selected OR
   // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up
   let imgFile = req.file;
-  if(imgFile){
+  if (imgFile) {
     imgFile = imgFile.filename;
-  }else{
+  } else {
     // keep the image saved during signup
     imgFile = req.body.dbImage
   }
 
   id = req.body._id,
-  trainerName = req.body.name,
-  email = req.body.email,
-  phone = req.body.phone,
-  address = req.body.address,
-  h_qualification = req.body.h_qualification,
-  skillSet = req.body.skillSet,
-  company_name = req.body.company_name,
-  designation = req.body.designation,
-  img = imgFile
+    trainerName = req.body.name,
+    email = req.body.email,
+    phone = req.body.phone,
+    address = req.body.address,
+    h_qualification = req.body.h_qualification,
+    skillSet = req.body.skillSet,
+    company_name = req.body.company_name,
+    designation = req.body.designation,
+    img = imgFile
 
-  trainerData.findByIdAndUpdate({_id:id},
-                          {$set:{"name":trainerName,
-                                "email":email,
-                                "phone":phone,
-                                "address":address,
-                                "h_qualification":h_qualification,
-                                "skillSet":skillSet,
-                                "company_name":company_name,
-                                "designation":designation,
-                                "img":img}})
-              .then(()=>{
-                res.send();
-              })
+  trainerData.findByIdAndUpdate({ _id: id },
+    {
+      $set: {
+        "name": trainerName,
+        "email": email,
+        "phone": phone,
+        "address": address,
+        "h_qualification": h_qualification,
+        "skillSet": skillSet,
+        "company_name": company_name,
+        "designation": designation,
+        "img": img
+      }
+    })
+    .then(() => {
+      res.send();
+    })
   
-// app.post('/editprofile',function(req,res){
-//     res.header("Access-Control-Allow-Origin","*");
-//     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
-//     console.log(req.body);
+  // app.post('/editprofile',function(req,res){
+  //     res.header("Access-Control-Allow-Origin","*");
+  //     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
+  //     console.log(req.body);
 
 
-//     var trainerData ={
-//         _id : req.body.trainerData._id,
-//         name : req.body.trainerData.name,
-//         email : req.body.trainerData.email,
-//         phone : req.body.trainerData.phone,
-//         address : req.body.trainerData.address,
-//         h_qualification : req.body.trainerData.h_qualification,
-//         skillSet : req.body.trainerData.skillSet,
-//         company_name : req.body.trainerData.company_name,
-//         designation : req.body.trainerData.designation,
-//         courses : req.body.trainerData.courses,
-//         img : req.body.trainerData.img
+  //     var trainerData ={
+  //         _id : req.body.trainerData._id,
+  //         name : req.body.trainerData.name,
+  //         email : req.body.trainerData.email,
+  //         phone : req.body.trainerData.phone,
+  //         address : req.body.trainerData.address,
+  //         h_qualification : req.body.trainerData.h_qualification,
+  //         skillSet : req.body.trainerData.skillSet,
+  //         company_name : req.body.trainerData.company_name,
+  //         designation : req.body.trainerData.designation,
+  //         courses : req.body.trainerData.courses,
+  //         img : req.body.trainerData.img
        
     
-//     }
+  //     }
 
 
 });
 
+
+//sendemial
+
+function approvemail(id){
+
+    trainerData.findOne({"_id":id})
+      
+  
+   .then((profile)=>{
+  
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+             user: 'mydiwaliwishes@gmail.com',
+             pass: 'dpdgqqutqnmqatez'
+         }
+     })
+    
+    
+    var mailOptions = {
+      from: 'alan.bayer49@ethereal.email',
+      to: profile.email,
+      subject: 'Account Approved -'+ profile.name,
+      html:`<h2>welcome - ${profile.name}</h2>
+      
+      <p>Hi <b>${profile.name}</b> ,your account for ict accademy trainer is approved by admin.check your profile using below credintials</p>
+      
+      <table  style="border: 1px solid #333;  width: 100%;" >
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">ICTAK ID</th>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.Unique_ID}</th>   
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;background-color: yellow;">Email</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;background-color: yellow;">${profile.email}</td>  
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;background-color: yellow;">Password</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;background-color: yellow;">${profile.password}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Employment Type</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.emptype}</td>    
+        </tr>
+        
+      </table>`
+  
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+                      
+      } else {       
+  
+      }
+    });
+   
+   });
+  }
+
+
+  function allocatemail(id){
+
+    trainerData.findOne({"_id":id})
+      
+  
+   .then((profile)=>{
+  
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+             user: 'mydiwaliwishes@gmail.com',
+             pass: 'dpdgqqutqnmqatez'
+         }
+     })
+    
+    
+    var mailOptions = {
+      from: 'alan.bayer49@ethereal.email',
+      to: profile.email,
+      subject: 'Course For -'+ profile.name,
+      html:`<h2>New Course Added </h2>
+      
+      <p>Hi <b>${profile.name}</b>, New Course is allocated in your profile Please login to your account and check the details.Important data related to course is included below</p>
+      
+      <table  style="border: 1px solid #333;  width: 100%;" >
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Batch Id</th>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.batchid}</th>   
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Course Id</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.courseid}</td>  
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Start Date</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.startdate}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">End Date</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.enddate}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Schedule time</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.scheduletime}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">venue</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${profile.venue}</td>    
+        </tr>
+        
+      </table>`
+  
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+                      
+      } else {       
+  
+      }
+    });
+   
+   });
+  }
 
 app.listen(port,()=>{console.log("Server ready at "+port);})

@@ -39,8 +39,14 @@
             <a class="mx-2 btn btn-success" (click)=approve(trainer,trainer.emptype)>Approve</a>
             <a class="btn btn-danger" (click)=reject(trainer)>Reject</a>
         </td>
+        
       </tr>
+      
     </tbody>
+    
   </table>
+  <div *ngIf="nodata"  class="alert alert-info" role="alert">
+   No new trainers for approval list
+   </div>
  </div>
 </div>

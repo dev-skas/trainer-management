@@ -8,16 +8,22 @@ import { TrainersModel } from '../Models/trainers.model';
   styleUrls: ['./search-trainer.component.css']
 })
 export class SearchTrainerComponent implements OnInit {
-
+  nodata= false;
   constructor(private _allocate:AllocationService,private _router:Router) {this.trainers=[]; }
   trainers:TrainersModel[];
 
 data:any;
-
+  
   ngOnInit(): void {
     this._allocate.gettrainerdtl().subscribe((data)=>{
       
-      this.trainers=JSON.parse(JSON.stringify(data));
+      this.trainers = JSON.parse(JSON.stringify(data));
+      if (this.trainers.length === 0) {
+        this.nodata=true
+     } else {
+ 
+       this.nodata=false
+    }
       
     })
   }

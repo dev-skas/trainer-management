@@ -1,7 +1,12 @@
 <app-main-home></app-main-home>
 
 
+
+
 <main class="form-signin text-dark text-center ">
+  <div *ngIf="err" class="alert alert-danger" role="alert">
+   Invalid Login Credintials
+  </div>
   <form #login="ngForm" (ngSubmit)="Login()">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 

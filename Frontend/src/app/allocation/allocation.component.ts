@@ -50,9 +50,8 @@ export class AllocationComponent implements OnInit {
   allocate(trainerdtls: any) {
    
     this._allocate.allocate(this.trainerdtls);
-   
-    console.log("called");
-    alert("success");
+
+
     this._router.navigate(['/admin/searchtrainer']);
 
 

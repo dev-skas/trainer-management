@@ -14,41 +14,52 @@ import { TrainersModel } from '../Models/trainers.model';
 export class AdmindashComponent implements OnInit {
 
   trainerdtls = {
-    Unique_ID :'',
-    emptype:''
-  
-  
+    Unique_ID: '',
+    emptype: ''
+
+
   }
-  trainers:TrainersModel[];
-  constructor(private _allocate:AllocationService,private _router:Router) {  this.trainers=[];
+
+  nodata=false
+  trainers: TrainersModel[];
+  constructor(private _allocate: AllocationService, private _router: Router) {
+    this.trainers = [];
   }
 
   ngOnInit(): void {
-    
-    this._allocate.gettrainers().subscribe((data)=>{
-      
-      this.trainers=JSON.parse(JSON.stringify(data));
-      console.log(this.trainers);
+
+    this._allocate.gettrainers().subscribe((data) => {
+
+      this.trainers = JSON.parse(JSON.stringify(data));
+      if (this.trainers.length === 0) {
+         this.nodata=true
+      } else {
+  
+        this.nodata=false
+     }
     })
-    }
-    approve(trainer:any,trainerdtls:any){
-      // localStorage.setItem("trainerid",trainer._id.toString());
-      this._allocate.approvetrainer(trainer,this.trainerdtls)
-      .subscribe((data)=>{
-        console.log("approved")
-        console.log(trainerdtls)
-      })   
-
-
-    }
-    reject(trainer:any){
-      console.log(trainer._id);
-
-this._allocate.rejecttrainer(trainer._id);
-
-this._router.navigate(['admin']);
-
-    }
+    
 
   }
+  approve(trainer: any, trainerdtls: any) {
+    // localStorage.setItem("trainerid",trainer._id.toString());
+    this._allocate.approvetrainer(trainer, this.trainerdtls)
+      .subscribe((data) => {
+        this.ngOnInit()
+
+      })
+
+
+  }
+  reject(trainer: any) {
+
+
+    this._allocate.rejecttrainer(trainer._id);
+
+    this.ngOnInit()
+
+
+  }
+
+}
 

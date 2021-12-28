@@ -65,7 +65,6 @@ export class EditDetailsFormComponent implements OnInit {
     formData.append('img',this.image); //img selected in file inputfor multer
     formData.append('dbImage',this.userItem.img) // if no file selected then this is img already in DB
     this.trainerservice.edittrainer(formData);
-    alert("Edit Success!")
 
 
 //     this.trainerservice.edittrainer(this.userItem);  

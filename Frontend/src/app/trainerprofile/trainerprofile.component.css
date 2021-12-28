@@ -55,7 +55,14 @@
     margin: 10px auto;
     border: 10px solid #ccc;
     border-radius: 50%;
+            transition-property: all;
+            transition-duration: 800ms; 
   }
+  .profile_img:hover{
+    transform: rotate(360deg);
+
+
+}
   
   .student-profile .card h3 {
     font-size: 20px;
@@ -82,3 +89,4 @@
     
     
   }
+  

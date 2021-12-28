@@ -24,11 +24,11 @@ export class AllocationService {
 
   }
   rejecttrainer(trainerid:any){
-    console.log("serv"+trainerid)
+   
     return this.http.delete('http://localhost:3000/reject/'+trainerid)
     
 .subscribe((data)=>{
-  console.log("reject");
+  
 })
     
 

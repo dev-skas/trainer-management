@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     private authService:AuthService,
     private router:Router
   ) { }
-  
+  err=false
   loginData ={
     email:'',
     password:''
@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
 
 
     },
-      err => {
-      console.log(err)
+      error => {
+      this.err = true
     })
 
   }
