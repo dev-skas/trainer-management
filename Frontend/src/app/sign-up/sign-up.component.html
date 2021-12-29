@@ -33,7 +33,7 @@
       </div>
       <div class="col-md-8 col-sm-12">
         <label for="address">Address</label>
-        <input type="text" class="form-control" placeholder="Enter Address " id="address" name="address" #address="ngModel" [(ngModel)] ="userItem.address" [class.is-invalid]="address.invalid && address.untouched" pattern="[A-Za-z\s0-9,]{2,200}"  required>
+        <input type="text" class="form-control" placeholder="Enter Address " id="address" name="address" #address="ngModel" [(ngModel)] ="userItem.address" [class.is-invalid]="address.invalid && address.untouched" pattern="[A-Za-z\s0-9,.()]{2,200}"  required>
         <small class="text-danger" [class.d-none]="address.valid || address.untouched">Enter valid address</small>
       </div>
    </div>
