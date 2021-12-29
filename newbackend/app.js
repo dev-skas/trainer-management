@@ -10,7 +10,7 @@ app.use(express.static('./dist/Frontend'));
 
 const trainerData = require('./src/model/signupModel');  // This is the model containing trainer sign up data
 // MULTER:
-const DIR = '../Frontend/src/assets/uploads';
+const DIR = '../dist/Frontend/src/assets/uploads';
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,DIR);
