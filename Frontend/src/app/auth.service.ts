@@ -13,7 +13,7 @@ export class AuthService {
   // Register New Trainer:
   newTrainer(formData:FormData){
     
-    return this.http.post("http://localhost:3000/registerTrainer",formData)
+    return this.http.post("api/registerTrainer",formData)
     .subscribe(
       (res)=>console.log(res),
       (err)=>console.log(err)
@@ -23,7 +23,7 @@ export class AuthService {
 
   // Login Trainer
   userLogin(trainer:any){
-    return this.http.post("http://localhost:3000/login",trainer)
+    return this.http.post("api/login",trainer)
    
   }
   UserLoggedIn(){
