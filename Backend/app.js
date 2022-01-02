@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 const port = process.env.PORT || 3000;
 const trainerData = require('./src/model/signupModel');  // This is the model containing trainer sign up data
 // MULTER:
-const DIR = '/api/assets/uploads';
+const DIR = '/assets/uploads';
 const path = require('path');
 app.use(express.static('./dist/Frontend'));
 const storage = multer.diskStorage({
