@@ -6,18 +6,17 @@ import { identity } from 'rxjs';
 })
 export class TrainerService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  gettrainer(id:any){
-    return this.http.get("http://localhost:3000/profile/"+id);
-  
+  gettrainer(id: any) {
+    return this.http.get("api/profile/" + id);
+
   }
 
-// edit trainer profile:
-  edittrainer(formData:FormData)
-  {
-     return this.http.put("http://localhost:3000/editprofile",formData)
-    .subscribe(data=>{console.log(data)})
+  // edit trainer profile:
+  edittrainer(formData: FormData) {
+    return this.http.put("api/editprofile", formData)
+      .subscribe(data => { console.log(data) })
 
   }
 

@@ -6,41 +6,40 @@ import { Injectable } from '@angular/core';
 })
 export class AllocationService {
 
-  constructor(private http:HttpClient ) { }
-  gettrainers()
-  {
+  constructor(private http: HttpClient) { }
+  gettrainers() {
     return this.http.get('api/trainers')
 
   }
 
-  gettrainerdtl()
-  {
+  gettrainerdtl() {
     return this.http.get('api/trainerdtl')
 
   }
-  approvetrainer(trainer:any,emptype:any){
-    return this.http.put('api/approve',trainer,emptype)
-    
+  approvetrainer(trainer: any, emptype: any) {
+    return this.http.put('api/approve', trainer, emptype)
+
 
   }
-  rejecttrainer(trainerid:any){
-   
-    return this.http.delete('api/reject/'+trainerid)
-    
-.subscribe((data)=>{
-  
-})
-    
+  rejecttrainer(trainerid: any) {
+
+    return this.http.delete('api/reject/' + trainerid)
+
+      .subscribe((data) => {
+
+      })
+
 
   }
-  gettrainerdtls(trainerId:any){
-    return this.http.get('api:3000/'+trainerId)
+  gettrainerdtls(trainerId: any) {
+    return this.http.get('api/' + trainerId)
 
   }
-  
-  allocate(trainerdtls:any){
-    return this.http.put<any>('api/allocate',trainerdtls)
-    .subscribe((data)=>{
-      console.log("update load")
-    })  }
+
+  allocate(trainerdtls: any) {
+    return this.http.put<any>('api/allocate', trainerdtls)
+      .subscribe((data) => {
+        console.log("update load")
+      })
+  }
 }
