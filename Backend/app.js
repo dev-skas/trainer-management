@@ -139,7 +139,7 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
         })
 
 
-        app.delete('/reject/:id',(req,res)=>{
+        app.delete('/api/reject/:id',(req,res)=>{
             id=req.params.id;
          console.log(id);
             trainerData.findByIdAndDelete({"_id":id})
