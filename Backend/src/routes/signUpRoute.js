@@ -3,7 +3,7 @@ const multer = require('multer');
 const signUpModel = require('../model/signupModel');
 let app =express.Router();
 
-const DIR = '../Frontend/src/assets/uploads';
+const DIR = './dist/Frontend/assets/uploads';
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,DIR);
