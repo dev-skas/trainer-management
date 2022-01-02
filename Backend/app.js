@@ -58,12 +58,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const signUpRouter = require('./src/routes/signUpRoute');
-app.post('api/registerTrainer',signUpRouter);
+app.post('/api/registerTrainer',signUpRouter);
 const loginRouter = require('./src/routes/loginRoute')
-app.post('api/login', loginRouter)
+app.post('/api/login', loginRouter)
 
 
-app.get('api/trainers',verifyToken,function(req,res){      //getting trainers details
+app.get('/api/trainers',verifyToken,function(req,res){      //getting trainers details
     trainerData.find({ isApproved:"false"})
     .then(function(trainers){
       console.log("success")
@@ -71,7 +71,7 @@ app.get('api/trainers',verifyToken,function(req,res){      //getting trainers de
 
     });
 });
-app.get('api/trainerdtl',verifyToken,function(req,res){      //getting trainers details
+app.get('/api/trainerdtl',verifyToken,function(req,res){      //getting trainers details
     trainerData.find({ isAllocated: "false" ,isApproved:"true"  })
     .then(function(trainers){
       console.log("success")
@@ -81,7 +81,7 @@ app.get('api/trainerdtl',verifyToken,function(req,res){      //getting trainers 
 });
 
 
-app.put('api/approve',verifyToken,(req,res)=>{   //aprrove trainers
+app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
     console.log(req.body)
    let id=req.body._id;
     emptype=req.body.emptype;
@@ -99,7 +99,7 @@ app.put('api/approve',verifyToken,(req,res)=>{   //aprrove trainers
 })
       
 
-      app.get('api/:id',(req,res)=>{
+      app.get('/api/:id',(req,res)=>{
         const id=req.params.id;
         console.log(id)
             trainerData.findOne({"_id":id})
@@ -112,7 +112,7 @@ app.put('api/approve',verifyToken,(req,res)=>{   //aprrove trainers
 
 
   
-      app.put('api/allocate',verifyToken,function(req,res){     //allocate trainers
+      app.put('/api/allocate',verifyToken,function(req,res){     //allocate trainers
     console.log(req.file);
    let id=req.body._id;
         courseid=req.body.courseid,
@@ -151,7 +151,7 @@ app.put('api/approve',verifyToken,(req,res)=>{   //aprrove trainers
 
 // trainer profile
 
-app.get('api/profile/:id',verifyToken,function(req,res){
+app.get('/api/profile/:id',verifyToken,function(req,res){
     const id= req.params.id;
     
     res.header("Access-Control-Allow-Origin","*")
@@ -169,7 +169,7 @@ app.get('api/profile/:id',verifyToken,function(req,res){
 // to edit trainer profile
 
 
-app.put('api/editprofile', verifyToken, upload.single('img'), (req, res) => {
+app.put('/api/editprofile', verifyToken, upload.single('img'), (req, res) => {
   // Here imgFile will store the image file from file input if its selected OR
   // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up
   let imgFile = req.file;
