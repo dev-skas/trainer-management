@@ -29,7 +29,7 @@ var upload = multer({
 });
 
 
-app.post('/registerTrainer',upload.single('img'),async(req,res)=>{
+app.post('/api/registerTrainer',upload.single('img'),async(req,res)=>{
     let file = req.file;
     // Testing By Console.log
     console.log(file.filename);

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const signUpModel = require('../model/signupModel');
 let app =express.Router();
 
-app.post('/login',(req,res)=>{
+app.post('/api/login',(req,res)=>{
     let userDetails = req.body;
     console.log(req.body)
     let adminEmail = 'admin@gmail.com';
