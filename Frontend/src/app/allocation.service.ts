@@ -18,10 +18,10 @@ export class AllocationService {
     return this.http.get('http://localhost:3000/trainerdtl')
 
   }
-  // viewtrainerdtl(){
-  //   return this.http.get('http://localhost:3000/viewtrainers')
+  viewtrainerdtl(){
+    return this.http.get('http://localhost:3000/viewtrainers')
 
-  // }
+  }
   approvetrainer(trainer:any,emptype:any){
     return this.http.put('http://localhost:3000/approve',trainer,emptype)
     
@@ -43,8 +43,12 @@ export class AllocationService {
   }
   
   allocate(trainerdtls:any){
-    return this.http.put<any>('http://localhost:3000/allocate',trainerdtls)
+    return this.http.post<any>('http://localhost:3000/allocate',trainerdtls)
     .subscribe((data)=>{
       console.log("update load")
     })  }
+  
+  getAllocationDetails(ID:any){
+    return this.http.get('http://localhost:3000/allocationDetails/'+ID)
+  }
 }

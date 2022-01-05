@@ -17,7 +17,7 @@ export class ViewallocationComponent implements OnInit {
   data:any;
   ngOnInit(): void {
    
-    this._allocate.gettrainerdtl().subscribe((data)=>{
+    this._allocate.viewtrainerdtl().subscribe((data)=>{
       
       this.trainers = JSON.parse(JSON.stringify(data));
       if (this.trainers.length === 0) {

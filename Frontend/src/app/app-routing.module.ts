@@ -11,11 +11,13 @@ import { TrainerprofileComponent } from './trainerprofile/trainerprofile.compone
 import { AuthGuard } from './auth.guard';
 import { TrainerAuthGuard } from './trainer-auth.guard';
 import { ViewallocationComponent } from './viewallocation/viewallocation.component';
+import { AllocationDetailsPageComponent } from './allocation-details-page/allocation-details-page.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignUpComponent },
   { path: "profile",canActivate:[TrainerAuthGuard], component: TrainerprofileComponent },
+  { path:"profile/allocateDetail",canActivate:[TrainerAuthGuard], component:AllocationDetailsPageComponent},
   { path: "editprofile",canActivate:[TrainerAuthGuard], component: EditDetailsFormComponent },
   {path:"admin",canActivate:[AuthGuard],component:AdmindashComponent},
   {path:"admin/allocate",canActivate:[AuthGuard],component:AllocationComponent},

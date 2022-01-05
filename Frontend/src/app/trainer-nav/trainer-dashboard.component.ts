@@ -20,6 +20,7 @@ export class TrainerDashboardComponent implements OnInit {
       localStorage.removeItem('tokenUser');
     }
     localStorage.removeItem('findtrainerData')
+    localStorage.removeItem('UniqueID')
     this.router.navigate(['/'])
   }
 }
