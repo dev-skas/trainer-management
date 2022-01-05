@@ -70,7 +70,7 @@ app.get('/trainers',verifyToken,function(req,res){      //getting trainers detai
     });
 });
 app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers details
-    trainerData.find({ isAllocated: "false" ,isApproved:"true"  })
+    trainerData.find({isApproved:"true"  })
     .then(function(trainers){
       console.log("success")
         res.send(trainers);
@@ -78,6 +78,15 @@ app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers det
     });
 });
 
+// app.get('/viewtrainers',verifyToken,function(req,res){      //getting trainers details
+//   trainerData.find({isApproved:"true"  })
+//   .then(function(trainers){
+//     console.log("success")
+//     trainers=trainers;
+//       res.send(trainers);
+
+//   });
+// });
 
 app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
     console.log(req.body)

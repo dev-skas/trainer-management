@@ -10,6 +10,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 import { AuthGuard } from './auth.guard';
 import { TrainerAuthGuard } from './trainer-auth.guard';
+import { ViewallocationComponent } from './viewallocation/viewallocation.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
@@ -18,8 +19,8 @@ const routes: Routes = [
   { path: "editprofile",canActivate:[TrainerAuthGuard], component: EditDetailsFormComponent },
   {path:"admin",canActivate:[AuthGuard],component:AdmindashComponent},
   {path:"admin/allocate",canActivate:[AuthGuard],component:AllocationComponent},
-  {path:"admin/searchtrainer",canActivate:[AuthGuard],component:SearchTrainerComponent}];
-
+  {path:"admin/searchtrainer",canActivate:[AuthGuard],component:SearchTrainerComponent},
+{path:"admin/viewallocation",canActivate:[AuthGuard],component:ViewallocationComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
