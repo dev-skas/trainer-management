@@ -8,6 +8,8 @@ const Schema =mongoose.Schema;
 const AllocationSchema = new Schema({
     Unique_ID:String,
     name:String,
+    courses:String,
+    skillSet:String,
     courseid:String,
     batchid:String,
     scheduletime:String,

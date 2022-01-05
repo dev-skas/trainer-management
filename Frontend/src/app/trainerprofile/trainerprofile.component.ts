@@ -26,7 +26,8 @@ export class TrainerprofileComponent implements OnInit {
     enddate:'',
     venue:'',
     courses:'',
-    isAllocated:''
+    isAllocated:'',
+    Unique_ID:''
     
   }
   // The below img is to get the image name from db & store to display img in profile page
@@ -38,7 +39,8 @@ export class TrainerprofileComponent implements OnInit {
     let trainerid=localStorage.getItem("findtrainerData")
     this.trainerservice.gettrainer(trainerid).subscribe((data:any)=>{
       this.profile = JSON.parse(JSON.stringify(data))
-      this.img = this.profile.img
+      this.img = this.profile.img;
+      localStorage.setItem("UniqueID",this.profile.Unique_ID)
     })
   }
   }

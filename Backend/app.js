@@ -120,6 +120,8 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
         Unique_ID:req.body.Unique_ID,
         name:req.body.name,
         courseid:req.body.courseid,
+        courses:req.body.courses,
+        skillSet:req.body.skillSet,
         batchid:req.body.batchid,
         scheduletime:req.body.scheduletime,
         startdate:req.body.startdate,
@@ -134,29 +136,19 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
       catch(err){
         console.error("Error from Backend(Allocate) = "+err);
       }
-  //  let id=req.body._id;
-  //       courseid=req.body.courseid,
-  //       batchid=req.body.batchid,
-  //       scheduletime=req.body.scheduletime,
-  //       startdate=req.body.startdate,
-  //       enddate=req.body.enddate,
-  //       venue=req.body.venue,
-
-  //   trainerData.findByIdAndUpdate({"_id":id},{$set:{
-  //       "courseid":courseid,
-  //      "batchid":batchid,
-  //       "scheduletime":scheduletime,
-  //       "startdate":startdate,
-  //      "enddate":enddate,
-  //       "venue":venue,
-  //       "isAllocated":"true" //employment type
-
-  //       }})
-  //       .then(function(){
-  //         res.send()
-  //         allocatemail(id)
-  //       })
+ 
     });
+// GET ALL ALLOCATION DETAILS OF SPECIFIED TRAINER
+    app.get('/allocationDetails/:id',(req,res)=>{
+      let Unique_ID = req.params.id;
+      res.header("Access-Control-Allow-Origin","*");
+      res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
+
+      allocationData.find({"Unique_ID":Unique_ID})
+      .then((allocateData)=>{
+        res.send(allocateData)
+      })
+    })
 
 // REJECT TRAINER API
         app.delete('/reject/:id',(req,res)=>{

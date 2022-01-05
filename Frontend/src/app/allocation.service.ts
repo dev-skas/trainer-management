@@ -43,4 +43,8 @@ export class AllocationService {
     .subscribe((data)=>{
       console.log("update load")
     })  }
+  
+  getAllocationDetails(ID:any){
+    return this.http.get('http://localhost:3000/allocationDetails/'+ID)
+  }
 }
