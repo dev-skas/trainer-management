@@ -119,6 +119,8 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
       var allocationDetails = allocationData({
         Unique_ID:req.body.Unique_ID,
         name:req.body.name,
+        courses:req.body.courses,
+        skillSet:req.body.skillSet,
         courseid:req.body.courseid,
         courses:req.body.courses,
         skillSet:req.body.skillSet,

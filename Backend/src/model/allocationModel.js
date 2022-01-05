@@ -16,7 +16,6 @@ const AllocationSchema = new Schema({
     startdate:String,
     enddate:String,
     venue:String,    
-    
 });
 const allocationData = mongoose.model('allocationData',AllocationSchema);
 module.exports = allocationData;
