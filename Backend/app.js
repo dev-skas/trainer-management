@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
 const port = process.env.PORT || 3000;
 const trainerData = require('./src/model/signupModel');  // This is the model containing trainer sign up data
+const allocationData = require('./src/model/allocationModel');
 // MULTER:
 const DIR = '../Frontend/src/assets/uploads';
 const storage = multer.diskStorage({
@@ -60,7 +61,7 @@ app.post('/registerTrainer',signUpRouter);
 const loginRouter = require('./src/routes/loginRoute')
 app.post('/login', loginRouter)
 
-
+// TO BE APPROVED LIST
 app.get('/trainers',verifyToken,function(req,res){      //getting trainers details
     trainerData.find({ isApproved:"false"})
     .then(function(trainers){
@@ -69,6 +70,8 @@ app.get('/trainers',verifyToken,function(req,res){      //getting trainers detai
 
     });
 });
+
+//GETS TRAINERS DETAILS FOR TRAINER LIST IN SEARCH & ALLOCATE PAGE 
 app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers details
     trainerData.find({ isAllocated: "false" ,isApproved:"true"  })
     .then(function(trainers){
@@ -78,7 +81,7 @@ app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers det
     });
 });
 
-
+// TO APPROVE
 app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
     console.log(req.body)
    let id=req.body._id;
@@ -96,7 +99,7 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
       })
 })
       
-
+// RETRIEVES THE TRAINER DETAIL TO DISPLAY INTO ALLOCATION FORM
       app.get('/:id',(req,res)=>{
         const id=req.params.id;
         console.log(id)
@@ -106,37 +109,48 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
             })
         
       
+      });
+
+
+  // INVOKED ON ALLOCATE BTN TO SAVE THE ALLOCATION DATAS INTO DB
+    app.post('/allocate',verifyToken,function(req,res){     //allocate trainers
+      console.log(req.file);
+      let id=req.body._id;
+      var allocationDetails = allocationData({
+        Unique_ID:req.body.Unique_ID,
+        name:req.body.name,
+        courseid:req.body.courseid,
+        courses:req.body.courses,
+        skillSet:req.body.skillSet,
+        batchid:req.body.batchid,
+        scheduletime:req.body.scheduletime,
+        startdate:req.body.startdate,
+        enddate:req.body.enddate,
+        venue:req.body.venue
       })
+      try{
+        allocationDetails = allocationDetails.save();
+        res.send();
+        allocatemail(id);
+      }
+      catch(err){
+        console.error("Error from Backend(Allocate) = "+err);
+      }
+ 
+    });
+// GET ALL ALLOCATION DETAILS OF SPECIFIED TRAINER
+    app.get('/allocationDetails/:id',(req,res)=>{
+      let Unique_ID = req.params.id;
+      res.header("Access-Control-Allow-Origin","*");
+      res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
 
+      allocationData.find({"Unique_ID":Unique_ID})
+      .then((allocateData)=>{
+        res.send(allocateData)
+      })
+    })
 
-  
-      app.put('/allocate',verifyToken,function(req,res){     //allocate trainers
-    console.log(req.file);
-   let id=req.body._id;
-        courseid=req.body.courseid,
-        batchid=req.body.batchid,
-        scheduletime=req.body.scheduletime,
-        startdate=req.body.startdate,
-        enddate=req.body.enddate,
-        venue=req.body.venue,
-
-    trainerData.findByIdAndUpdate({"_id":id},{$set:{
-        "courseid":courseid,
-       "batchid":batchid,
-        "scheduletime":scheduletime,
-        "startdate":startdate,
-       "enddate":enddate,
-        "venue":venue,
-        "isAllocated":"true" //employment type
-
-        }})
-        .then(function(){
-          res.send()
-          allocatemail(id)
-        })
-        })
-
-
+// REJECT TRAINER API
         app.delete('/reject/:id',(req,res)=>{
             id=req.params.id;
          console.log(id);
@@ -148,7 +162,7 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
     })
 
 // trainer profile
-
+// GETS THE TRAINER'S PROFILE WITH MENTIONED ID
 app.get('/profile/:id',verifyToken,function(req,res){
     const id= req.params.id;
     
@@ -162,11 +176,7 @@ app.get('/profile/:id',verifyToken,function(req,res){
           });
 });
 
-
-
-// to edit trainer profile
-
-
+// EDIT TRAINER PROFILE
 app.put('/editprofile', verifyToken, upload.single('img'), (req, res) => {
   // Here imgFile will store the image file from file input if its selected OR
   // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up

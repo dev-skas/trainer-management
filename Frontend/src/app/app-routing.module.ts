@@ -10,11 +10,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 import { AuthGuard } from './auth.guard';
 import { TrainerAuthGuard } from './trainer-auth.guard';
+import { AllocationDetailsPageComponent } from './allocation-details-page/allocation-details-page.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignUpComponent },
   { path: "profile",canActivate:[TrainerAuthGuard], component: TrainerprofileComponent },
+  { path:"profile/allocateDetail",canActivate:[TrainerAuthGuard], component:AllocationDetailsPageComponent},
   { path: "editprofile",canActivate:[TrainerAuthGuard], component: EditDetailsFormComponent },
   {path:"admin",canActivate:[AuthGuard],component:AdmindashComponent},
   {path:"admin/allocate",canActivate:[AuthGuard],component:AllocationComponent},

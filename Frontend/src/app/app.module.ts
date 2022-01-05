@@ -28,6 +28,7 @@ import { AllocationComponent } from './allocation/allocation.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { FooterComponent } from './footer/footer.component';
+import { AllocationDetailsPageComponent } from './allocation-details-page/allocation-details-page.component';
 
 
 
@@ -48,7 +49,8 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     AdminnavComponent,
     AdmindashComponent,
-    FooterComponent
+    FooterComponent,
+    AllocationDetailsPageComponent
 
   ],
   imports: [
