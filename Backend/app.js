@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
 const port = process.env.PORT || 3000;
 const trainerData = require('./src/model/signupModel');  // This is the model containing trainer sign up data
+const allocationData = require('./src/model/allocationModel');
 // MULTER:
 const DIR = './dist/Frontend/assets/uploads';
 const path = require('path');
@@ -108,156 +109,170 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
             })
         
       
-      })
+      });
 
+
+  // INVOKED ON ALLOCATE BTN TO SAVE THE ALLOCATION DATAS INTO DB
+   
 
   
-      app.put('/api/allocate',verifyToken,function(req,res){     //allocate trainers
-    console.log(req.file);
-   let id=req.body._id;
-        courseid=req.body.courseid,
-        batchid=req.body.batchid,
-        scheduletime=req.body.scheduletime,
-        startdate=req.body.startdate,
-        enddate=req.body.enddate,
-        venue=req.body.venue,
+        app.put('/api/allocate', verifyToken, function (req, res) {     //allocate trainers
+          console.log(req.file);
+          let id = req.body._id;
+          courseid = req.body.courseid,
+            batchid = req.body.batchid,
+            scheduletime = req.body.scheduletime,
+            startdate = req.body.startdate,
+            enddate = req.body.enddate,
+            venue = req.body.venue,
 
-    trainerData.findByIdAndUpdate({"_id":id},{$set:{
-        "courseid":courseid,
-       "batchid":batchid,
-        "scheduletime":scheduletime,
-        "startdate":startdate,
-       "enddate":enddate,
-        "venue":venue,
-        "isAllocated":"true" //employment type
+            trainerData.findByIdAndUpdate({ "_id": id }, {
+              $set: {
+                "courseid": courseid,
+                "batchid": batchid,
+                "scheduletime": scheduletime,
+                "startdate": startdate,
+                "enddate": enddate,
+                "venue": venue,
+                "isAllocated": "true" //employment type
 
-        }})
-        .then(function(){
-          res.send()
-          allocatemail(id)
+              }
+            })
+              .then(function () {
+                res.send()
+                allocatemail(id)
+              })
         })
-        })
 
-
-        app.delete('/api/reject/:id',(req,res)=>{
-            id=req.params.id;
-         console.log(id);
-            trainerData.findByIdAndDelete({"_id":id})
-        .then(()=>{
-            console.log("success delete");
-            res.send();
-        })
-    })
-
-// trainer profile
-
-app.get('/api/profile/:id',verifyToken,function(req,res){
-    const id= req.params.id;
+        app.get('/api/allocationDetails/:id', (req, res) => {
+          let Unique_ID = req.params.id;
+          res.header("Access-Control-Allow-Origin", "*");
+          res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
     
-    res.header("Access-Control-Allow-Origin","*")
-    res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS')
-    trainerData.findOne({"_id":id})
+          allocationData.find({ "Unique_ID": Unique_ID })
+            .then((allocateData) => {
+              res.send(allocateData)
+            })
+        })
+        app.delete('/api/reject/:id', (req, res) => {
+          id = req.params.id;
+          console.log(id);
+          trainerData.findByIdAndDelete({ "_id": id })
+            .then(() => {
+              console.log("success delete");
+              res.send();
+            })
+        })
+
+        // trainer profile
+
+        app.get('/api/profile/:id', verifyToken, function (req, res) {
+          const id = req.params.id;
     
-          .then(function(trainerData){
+          res.header("Access-Control-Allow-Origin", "*")
+          res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS')
+          trainerData.findOne({ "_id": id })
+    
+            .then(function (trainerData) {
               // console.log("Profile = "+trainerData);
               res.send(trainerData);
-          });
-});
+            });
+        });
 
 
 
-// to edit trainer profile
+        // to edit trainer profile
 
 
-app.put('/api/editprofile', verifyToken, upload.single('img'), (req, res) => {
-  // Here imgFile will store the image file from file input if its selected OR
-  // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up
-  let imgFile = req.file;
-  if (imgFile) {
-    imgFile = imgFile.filename;
-  } else {
-    // keep the image saved during signup
-    imgFile = req.body.dbImage
-  }
+        app.put('/api/editprofile', verifyToken, upload.single('img'), (req, res) => {
+          // Here imgFile will store the image file from file input if its selected OR
+          // If no file was selected in edit profile page then just keep the same file name from db which is previously stored during sign up
+          let imgFile = req.file;
+          if (imgFile) {
+            imgFile = imgFile.filename;
+          } else {
+            // keep the image saved during signup
+            imgFile = req.body.dbImage
+          }
 
-  id = req.body._id,
-    trainerName = req.body.name,
-    email = req.body.email,
-    phone = req.body.phone,
-    address = req.body.address,
-    h_qualification = req.body.h_qualification,
-    skillSet = req.body.skillSet,
-    company_name = req.body.company_name,
-    designation = req.body.designation,
-    img = imgFile
+          id = req.body._id,
+            trainerName = req.body.name,
+            email = req.body.email,
+            phone = req.body.phone,
+            address = req.body.address,
+            h_qualification = req.body.h_qualification,
+            skillSet = req.body.skillSet,
+            company_name = req.body.company_name,
+            designation = req.body.designation,
+            img = imgFile
 
-  trainerData.findByIdAndUpdate({ _id: id },
-    {
-      $set: {
-        "name": trainerName,
-        "email": email,
-        "phone": phone,
-        "address": address,
-        "h_qualification": h_qualification,
-        "skillSet": skillSet,
-        "company_name": company_name,
-        "designation": designation,
-        "img": img
-      }
-    })
-    .then(() => {
-      res.send();
-    })
+          trainerData.findByIdAndUpdate({ _id: id },
+            {
+              $set: {
+                "name": trainerName,
+                "email": email,
+                "phone": phone,
+                "address": address,
+                "h_qualification": h_qualification,
+                "skillSet": skillSet,
+                "company_name": company_name,
+                "designation": designation,
+                "img": img
+              }
+            })
+            .then(() => {
+              res.send();
+            })
   
-  // app.post('/editprofile',function(req,res){
-  //     res.header("Access-Control-Allow-Origin","*");
-  //     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
-  //     console.log(req.body);
+          // app.post('/editprofile',function(req,res){
+          //     res.header("Access-Control-Allow-Origin","*");
+          //     res.header('Access-Control-Allow-Methods: GET,POST,PATCH,PUT,DELETE,OPTIONS');
+          //     console.log(req.body);
 
 
-  //     var trainerData ={
-  //         _id : req.body.trainerData._id,
-  //         name : req.body.trainerData.name,
-  //         email : req.body.trainerData.email,
-  //         phone : req.body.trainerData.phone,
-  //         address : req.body.trainerData.address,
-  //         h_qualification : req.body.trainerData.h_qualification,
-  //         skillSet : req.body.trainerData.skillSet,
-  //         company_name : req.body.trainerData.company_name,
-  //         designation : req.body.trainerData.designation,
-  //         courses : req.body.trainerData.courses,
-  //         img : req.body.trainerData.img
+          //     var trainerData ={
+          //         _id : req.body.trainerData._id,
+          //         name : req.body.trainerData.name,
+          //         email : req.body.trainerData.email,
+          //         phone : req.body.trainerData.phone,
+          //         address : req.body.trainerData.address,
+          //         h_qualification : req.body.trainerData.h_qualification,
+          //         skillSet : req.body.trainerData.skillSet,
+          //         company_name : req.body.trainerData.company_name,
+          //         designation : req.body.trainerData.designation,
+          //         courses : req.body.trainerData.courses,
+          //         img : req.body.trainerData.img
        
     
-  //     }
+          //     }
 
 
-});
+        });
 
 
-//sendemial
+        //sendemial
 
-function approvemail(id){
+        function approvemail(id) {
 
-    trainerData.findOne({"_id":id})
+          trainerData.findOne({ "_id": id })
       
   
-   .then((profile)=>{
+            .then((profile) => {
   
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-             user: 'mydiwaliwishes@gmail.com',
-             pass: 'dpdgqqutqnmqatez'
-         }
-     })
+              var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'mydiwaliwishes@gmail.com',
+                  pass: 'dpdgqqutqnmqatez'
+                }
+              })
     
     
-    var mailOptions = {
-      from: 'alan.bayer49@ethereal.email',
-      to: profile.email,
-      subject: 'Account Approved -'+ profile.name,
-      html:`<h2>welcome - ${profile.name}</h2>
+              var mailOptions = {
+                from: 'alan.bayer49@ethereal.email',
+                to: profile.email,
+                subject: 'Account Approved -' + profile.name,
+                html: `<h2>welcome - ${profile.name}</h2>
       
       <p>Hi <b>${profile.name}</b> ,your account for ict accademy trainer is approved by admin.check your profile using below credintials</p>
       
@@ -297,42 +312,42 @@ function approvemail(id){
         
       </table>`
   
-    };
+              };
     
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
+              transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                  console.log(error);
                       
-      } else {       
+                } else {
   
-      }
-    });
+                }
+              });
    
-   });
-  }
+            });
+        }
 
 
-  function allocatemail(id){
+        function allocatemail(id) {
 
-    trainerData.findOne({"_id":id})
+          trainerData.findOne({ "_id": id })
       
   
-   .then((profile)=>{
+            .then((profile) => {
   
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-             user: 'mydiwaliwishes@gmail.com',
-             pass: 'dpdgqqutqnmqatez'
-         }
-     })
+              var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'mydiwaliwishes@gmail.com',
+                  pass: 'dpdgqqutqnmqatez'
+                }
+              })
     
     
-    var mailOptions = {
-      from: 'alan.bayer49@ethereal.email',
-      to: profile.email,
-      subject: 'Course For -'+ profile.name,
-      html:`<h2>New Course Added </h2>
+              var mailOptions = {
+                from: 'alan.bayer49@ethereal.email',
+                to: profile.email,
+                subject: 'Course For -' + profile.name,
+                html: `<h2>New Course Added </h2>
       
       <p>Hi <b>${profile.name}</b>, New Course is allocated in your profile Please login to your account and check the details.Important data related to course is included below</p>
       
@@ -388,23 +403,24 @@ function approvemail(id){
         
       </table>`
   
-    };
+              };
     
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
+              transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                  console.log(error);
                       
-      } else {       
+                } else {
   
-      }
-    });
+                }
+              });
    
-   });
-}
+            });
+        }
   
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname + '/dist/Frontend/index.html'))
-});
+        app.get('/*', function (req, res) {
+          res.sendFile(path.join(__dirname + '/dist/Frontend/index.html'))
+        });
 
-
-app.listen(port,()=>{console.log("Server ready at "+port);})
+      
+        app.listen(port, () => { console.log("Server ready at " + port); })
+      

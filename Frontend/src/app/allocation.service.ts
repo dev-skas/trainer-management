@@ -16,9 +16,13 @@ export class AllocationService {
     return this.http.get('api/trainerdtl')
 
   }
-  approvetrainer(trainer: any, emptype: any) {
-    return this.http.put('api/approve', trainer, emptype)
+  viewtrainerdtl(){
+    return this.http.get('api/viewtrainers')
 
+  }
+  approvetrainer(trainer:any,emptype:any){
+    return this.http.put('api/approve',trainer,emptype)
+    
 
   }
   rejecttrainer(trainerid: any) {
@@ -41,5 +45,11 @@ export class AllocationService {
       .subscribe((data) => {
         console.log("update load")
       })
+  }
+  
+  
+  
+  getAllocationDetails(ID:any){
+    return this.http.get('api/allocationDetails/'+ID)
   }
 }
