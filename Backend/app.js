@@ -73,13 +73,24 @@ app.get('/trainers',verifyToken,function(req,res){      //getting trainers detai
 
 //GETS TRAINERS DETAILS FOR TRAINER LIST IN SEARCH & ALLOCATE PAGE 
 app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers details
-    trainerData.find({ isAllocated: "false" ,isApproved:"true"  })
+    trainerData.find({isApproved:"true"  })
     .then(function(trainers){
       console.log("success")
         res.send(trainers);
 
     });
 });
+
+
+app.get('/viewtrainers',verifyToken,function(req,res){      //getting trainers details
+  allocationData.find()
+  .then(function(trainers){
+    console.log("success")
+      res.send(trainers);
+
+  });
+});
+
 
 // TO APPROVE
 app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
@@ -131,6 +142,8 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
         venue:req.body.venue
       })
       try{
+
+
         allocationDetails = allocationDetails.save();
         res.send();
         allocatemail(id);
@@ -151,6 +164,7 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
         res.send(allocateData)
       })
     })
+
 
 // REJECT TRAINER API
         app.delete('/reject/:id',(req,res)=>{

@@ -15,7 +15,10 @@ const AllocationSchema = new Schema({
     scheduletime:String,
     startdate:String,
     enddate:String,
-    venue:String,    
+
+    venue:String, 
+    isAllocated:String   
+
 });
 const allocationData = mongoose.model('allocationData',AllocationSchema);
 module.exports = allocationData;

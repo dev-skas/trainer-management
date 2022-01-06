@@ -28,6 +28,9 @@ import { AllocationComponent } from './allocation/allocation.component';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { FooterComponent } from './footer/footer.component';
+
+import { ViewallocationComponent } from './viewallocation/viewallocation.component';
+
 import { AllocationDetailsPageComponent } from './allocation-details-page/allocation-details-page.component';
 
 
@@ -50,6 +53,10 @@ import { AllocationDetailsPageComponent } from './allocation-details-page/alloca
     AdminnavComponent,
     AdmindashComponent,
     FooterComponent,
+
+    ViewallocationComponent,
+
+
     AllocationDetailsPageComponent
 
   ],

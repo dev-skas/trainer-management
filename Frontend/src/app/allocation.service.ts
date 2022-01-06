@@ -18,6 +18,10 @@ export class AllocationService {
     return this.http.get('http://localhost:3000/trainerdtl')
 
   }
+  viewtrainerdtl(){
+    return this.http.get('http://localhost:3000/viewtrainers')
+
+  }
   approvetrainer(trainer:any,emptype:any){
     return this.http.put('http://localhost:3000/approve',trainer,emptype)
     
