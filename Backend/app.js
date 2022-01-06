@@ -81,6 +81,14 @@ app.get('/api/trainerdtl',verifyToken,function(req,res){      //getting trainers
     });
 });
 
+app.get('/api/viewtrainers',verifyToken,function(req,res){      //getting trainers details
+  allocationData.find()
+  .then(function(trainers){
+    console.log("success")
+      res.send(trainers);
+
+  });
+});
 
 app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
     console.log(req.body)
