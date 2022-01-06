@@ -81,6 +81,7 @@ app.get('/trainerdtl',verifyToken,function(req,res){      //getting trainers det
     });
 });
 
+
 app.get('/viewtrainers',verifyToken,function(req,res){      //getting trainers details
   allocationData.find()
   .then(function(trainers){
@@ -89,6 +90,7 @@ app.get('/viewtrainers',verifyToken,function(req,res){      //getting trainers d
 
   });
 });
+
 
 // TO APPROVE
 app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
@@ -141,6 +143,7 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
       })
       try{
 
+
         allocationDetails = allocationDetails.save();
         res.send();
         allocatemail(id);
@@ -161,6 +164,7 @@ app.put('/approve',verifyToken,(req,res)=>{   //aprrove trainers
         res.send(allocateData)
       })
     })
+
 
 // REJECT TRAINER API
         app.delete('/reject/:id',(req,res)=>{

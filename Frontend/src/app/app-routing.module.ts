@@ -10,7 +10,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 import { AuthGuard } from './auth.guard';
 import { TrainerAuthGuard } from './trainer-auth.guard';
+
 import { ViewallocationComponent } from './viewallocation/viewallocation.component';
+
 import { AllocationDetailsPageComponent } from './allocation-details-page/allocation-details-page.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
