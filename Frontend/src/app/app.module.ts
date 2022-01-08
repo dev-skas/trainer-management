@@ -17,7 +17,7 @@ import { EditDetailsFormComponent } from './edit-details-form/edit-details-form.
 import { TrainerprofileComponent } from './trainerprofile/trainerprofile.component';
 // import { TrainerDashboardComponent } from './trainer-dashboard/trainer-dashboard.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TrainerDashboardComponent } from './trainer-nav/trainer-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { AdminnavComponent } from './adminnav/adminnav.component';
@@ -66,6 +66,7 @@ import { AllocationDetailsPageComponent } from './allocation-details-page/alloca
     Ng2SearchPipeModule,
     FormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     AuthService,

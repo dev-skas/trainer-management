@@ -72,16 +72,26 @@
         </div>
         <div class="col-md-6 col-sm-12">
             <label for="courses">ICTAK Courses Handling</label>
+            <ng-multiselect-dropdown
+                [placeholder]="'Choose Courses'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                (onSelect)="onItemSelect($event)"
+                name="courses"
+                >
+                
+
+            </ng-multiselect-dropdown>
             <!-- The below courseChange($event) helps us to get the value that is selected from the dropdown menu -->
-            <select class="form-control" name="courses" id="courses" #courses="ngModel" [(ngModel)]="userItem.courses" (change)="courseChange($event)" [class.is-invalid]="courses.invalid && courses.untouched" required>
+            <!-- <select class="form-control" name="courses" id="courses" #courses="ngModel" [(ngModel)]="userItem.courses" (change)="courseChange($event)" [class.is-invalid]="courses.invalid && courses.untouched" required>
             <option value="" disabled>Choose Course</option>
             <option value="Full Stack Development">Fullstack Development</option>
             <option value="Data Science and analytics">Data Science and analytics</option>
             <option value="Cyber Security Analyst">Cyber Security</option>
             <option value="Robotic Process Automation">Robotic Process Automation</option>
         
-            </select>
-            <small class="text-danger" [class.d-none]="courses.valid || courses.untouched">Please choose a course</small>
+            </select> -->
+            <!-- <small class="text-danger" [class.d-none]="courses.valid || courses.untouched">Please choose a course</small> -->
         </div>
    </div>
    <br>
