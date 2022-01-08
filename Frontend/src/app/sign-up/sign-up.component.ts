@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { TrainersModel } from '../Models/trainers.model';
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,21 +11,39 @@ import { TrainersModel } from '../Models/trainers.model';
 export class SignUpComponent implements OnInit {
   userItem = new TrainersModel('','','','','','','','','','','','','',false,false,'','','','','','','');
   image:any;
+  dropdownList:any = [];
+  courses:any=[];
+  dropdownSettings:IDropdownSettings = {};
+
   constructor(
     private authService:AuthService,
     private router:Router
   ) { }
 
   ngOnInit(): void {
+    this.dropdownList = [
+      { id: 1, course: 'Full Stack Development' },
+      { id: 2, course: 'Data Science & Analytics' },
+      { id: 3, course: 'Cyber Security Analyst' },
+      { id: 4, course: 'Robotic Process Automation' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'course',
+      itemsShowLimit: 3,
+      enableCheckAll:false,
+      maxHeight:150
+    };
   }
-
-
-  // courseChange() will detect a change in event click of select tag, so we can get the course value/course name 
-  // and set the course value/name to courses of userItem array: -
-  courseChange(event:any){
-    // console.log(event.target.value); // testing
-    this.userItem.courses = event.target.value;
-  }
+  
+    onItemSelect(event:any) {
+     
+      this.courses.push(event.course) 
+      this.userItem.courses = this.courses.toString();
+      console.log(this.userItem.courses);
+      
+     }
 
   onFileSelect(event:any){
     if(event.target.files.length>0){
