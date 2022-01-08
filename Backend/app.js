@@ -125,32 +125,31 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
 
   
         app.post('/api/allocate', verifyToken, function (req, res) {     //allocate trainers
-          console.log(req.file);
-          let id = req.body._id;
-          courseid = req.body.courseid,
-            batchid = req.body.batchid,
-            scheduletime = req.body.scheduletime,
-            startdate = req.body.startdate,
-            enddate = req.body.enddate,
-            venue = req.body.venue,
-
-            trainerData.findByIdAndUpdate({ "_id": id }, {
-              $set: {
-                "courseid": courseid,
-                "batchid": batchid,
-                "scheduletime": scheduletime,
-                "startdate": startdate,
-                "enddate": enddate,
-                "venue": venue,
-                "isAllocated": "true" //employment type
-
-              }
+            console.log(req.file);
+            let id=req.body._id;
+            var allocationDetails = allocationData({
+                Unique_ID:req.body.Unique_ID,
+                name:req.body.name,
+                courses:req.body.courses,
+                skillSet:req.body.skillSet,
+                courseid:req.body.courseid,
+                batchid:req.body.batchid,
+                scheduletime:req.body.scheduletime,
+                startdate:req.body.startdate,
+                enddate:req.body.enddate,
+                venue:req.body.venue
             })
-              .then(function () {
-                res.send()
-                allocatemail(id)
-              })
-        })
+           try{
+
+
+            allocationDetails = allocationDetails.save();
+            res.send();
+            allocatemail(id);
+            }
+        catch(err){
+            console.error("Error from Backend(Allocate) = "+err);
+            }
+        });
 
         app.get('/api/allocationDetails/:id', (req, res) => {
           let Unique_ID = req.params.id;
