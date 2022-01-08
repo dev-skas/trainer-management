@@ -124,7 +124,7 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
    
 
   
-        app.put('/api/allocate', verifyToken, function (req, res) {     //allocate trainers
+        app.post('/api/allocate', verifyToken, function (req, res) {     //allocate trainers
           console.log(req.file);
           let id = req.body._id;
           courseid = req.body.courseid,
