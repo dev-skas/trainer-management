@@ -127,6 +127,7 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
         app.post('/api/allocate', verifyToken, function (req, res) {     //allocate trainers
             console.log(req.file);
             let id=req.body._id;
+            let email=req.body.email;
             var allocationDetails = allocationData({
                 Unique_ID:req.body.Unique_ID,
                 name:req.body.name,
@@ -140,11 +141,84 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
                 venue:req.body.venue
             })
            try{
-
-
             allocationDetails = allocationDetails.save();
             res.send();
-            allocatemail(Unique_ID);
+             var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+                 user: 'mydiwaliwishes@gmail.com',
+                 pass: 'dpdgqqutqnmqatez'
+             }
+         });
+         var mailOptions = {
+          from: 'alan.bayer49@ethereal.email',
+          to: email,
+          subject: 'Course For - '+ req.body.name,
+          html:`<h2>New Course Added </h2>
+          
+          <p>Hi <b>${req.body.name}</b>, New Course is allocated in your profile. Please login to your account and check the details. Important data related to course is included below: </p>
+          
+          <table  style="border: 1px solid #333;  width: 100%;" >
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Batch Id</th>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${req.body.batchid}</th>   
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Course Id</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${req.body.courseid}</td>  
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Start Date</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${req.body.startdate}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">End Date</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${req.body.enddate}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">Schedule time</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${req.body.scheduletime}</td>    
+        </tr>
+        <tr>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">venue</td>
+          <td style="border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;">${req.body.venue}</td>    
+        </tr>
+        
+      </table>`
+      
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+                          
+          } else {       
+      
+          }
+        });
             }
         catch(err){
             console.error("Error from Backend(Allocate) = "+err);
