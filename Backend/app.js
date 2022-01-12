@@ -144,7 +144,7 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
 
             allocationDetails = allocationDetails.save();
             res.send();
-            allocatemail(id);
+            allocatemail(Unique_ID);
             }
         catch(err){
             console.error("Error from Backend(Allocate) = "+err);
@@ -279,9 +279,9 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
                 from: 'alan.bayer49@ethereal.email',
                 to: profile.email,
                 subject: 'Account Approved -' + profile.name,
-                html: `<h2>welcome - ${profile.name}</h2>
+                html: `<h2>Welcome - ${profile.name}</h2>
       
-      <p>Hi <b>${profile.name}</b> ,your account for ict accademy trainer is approved by admin.check your profile using below credintials</p>
+      <p>Hi <b>${profile.name}</b> , your account for ICT Academy trainer is approved by admin. Check your profile using below credintials: </p>
       
       <table  style="border: 1px solid #333;  width: 100%;" >
         <tr>
@@ -336,7 +336,7 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
 
         function allocatemail(id) {
 
-          trainerData.findOne({ "_id": id })
+          allocationData.find({"Unique_ID": Unique_ID })
       
   
             .then((profile) => {
@@ -356,7 +356,7 @@ app.put('/api/approve',verifyToken,(req,res)=>{   //aprrove trainers
                 subject: 'Course For -' + profile.name,
                 html: `<h2>New Course Added </h2>
       
-      <p>Hi <b>${profile.name}</b>, New Course is allocated in your profile Please login to your account and check the details.Important data related to course is included below</p>
+      <p>Hi <b>${profile.name}</b>, New Course is allocated in your profile. Please login to your account and check the details. Important data related to course is included below</p>
       
       <table  style="border: 1px solid #333;  width: 100%;" >
         <tr>
